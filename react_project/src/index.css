@@ -18,6 +18,16 @@ body {
   text-align : center;
   margin-right:  0px;
 }
+h1{
+  color: #61dafb;
+}
+h3{
+  text-align: left;
+  color : lightgreen;
+}
+h4{
+  color: aliceblue;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
