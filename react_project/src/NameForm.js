@@ -7,10 +7,9 @@ class NameForm extends React.Component {
         this.state = { value: 'Enter a Name', renderChapter: true };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChildUnmount = this.handleChildUnmount.bind(this);
     }
     dismiss() {
-        this.props.unmountMe();
+        this.props.unmountForm();
     }
 
     handleChange(event) {
@@ -22,12 +21,7 @@ class NameForm extends React.Component {
         this.dismiss();
     }
 
-    handleChildUnmount() {
-        this.setState({ renderChapter: false });
-    }
-
     render() {
-        let name = localStorage.getItem('UserName');
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
