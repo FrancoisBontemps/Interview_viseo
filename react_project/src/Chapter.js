@@ -1,34 +1,35 @@
 import React from 'react';
-import Section from 'react';
 
 class Chapter extends React.Component {
     constructor(props) {
         super(props);
         this.state = { chapnum: props.chapnum, section: props.section };
-        this.handleClick = this.handleClick.bind(this);
     }
     dismiss() {
-        this.props.unmountChapter();
+        const {unmountChapter} = this.props;
+        unmountChapter();
     }
-    handleClick() {
+    handleClick = () => {
         this.dismiss();
-    }
+    };
     DisplayList(props) {
         return (
             <div>
-                {props.map(props => (
-                    <h4> {props} </h4>
+                {props.map((prop, index) => (
+                    <h4 key={index}> {prop} </h4>
                 ))}
             </div>
         );
     }
 
     render() {
+        const { chapnum, section } = this.state;
+
         return (
             <div>
                 <h3>{localStorage.getItem('UserName')}</h3>
-                <h1>{this.state.chapnum}</h1>
-                <div>{this.DisplayList(this.state.section)}</div>
+                <h1>{chapnum}</h1>
+                <div>{this.DisplayList(section)}</div>
                 <button onClick={this.handleClick}>Démarrez</button>
             </div>
         );

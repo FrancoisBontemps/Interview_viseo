@@ -1,33 +1,34 @@
 import React from 'react';
-import Chapter from './Chapter';
 
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { value: 'Enter a Name', renderChapter: true };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+
     }
     dismiss() {
-        this.props.unmountForm();
+        const { unmountForm } = this.props;
+        unmountForm();
     }
 
-    handleChange(event) {
-        this.setState({ value: event.target.value });
+    handleChange =({ target }) => {
+        this.setState({ value: target.value });
     }
-    handleSubmit(event) {
+    handleSubmit = (event) => {
+        const { value } = this.state;
         event.preventDefault();
-        localStorage.setItem('UserName', this.state.value);
+        localStorage.setItem('UserName', value);
         this.dismiss();
     }
 
     render() {
+        const { value } = this.state;
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label Form>
-                        User : <mspace />
-                        <input type="text" color={'yellow'} value={this.state.value} onChange={this.handleChange} />
+                    <label>
+                        User :
+                        <input type="text" color={'yellow'} value={value} onChange={this.handleChange} />
                     </label>
                     <br />
                     <input type="submit" value="Valider" align="center" />

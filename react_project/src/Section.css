@@ -1,0 +1,51 @@
+.btn-group button {
+    margin-top : 40px;
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #3e8e41;
+}
+
+.Padding{
+    padding-left:20%;
+}
+
+.Gris{
+
+    border : none;
+    background-color: darkgray;
+    width : 400px;
+    height : 100px;
+    margin-left: 37%;
+}
+.SectionParts{
+    color: black;
+    padding-top: 9%;
+
+}
+
+.None{
+    font-family : Noto Sans, sans-serif ;
+    border : 0px;
+    color : #000000;
+    text-align :center;
+    padding-top : 15%;
+}
