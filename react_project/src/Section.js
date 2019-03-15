@@ -4,34 +4,34 @@ import './Section.css';
 class Section extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { name: props.name, parts: props.parts };
+        this.state = { title: props.title, data: props.data, sectionIndex: props.sectionIndex };
         this.handleClick1 = this.handleClick1.bind(this);
         this.handleClick2 = this.handleClick2.bind(this);
         this.handleClick3 = this.handleClick3.bind(this);
         this.handleClick4 = this.handleClick4.bind(this);
         this.handleClick5 = this.handleClick5.bind(this);
-        this.nextSection = this.nextSection.bind(this);
     }
-    DisplayList(props) {
-        let i = 0;
+    DisplayParts() {
+        const { sectionIndex, data } = this.state;
         return (
             <div>
-                {props.map(props => (
-                    <h4 key={i++} className="Gris">
+                {Object.values(data.sections)[sectionIndex].notions.map((value, index) => (
+                    <h4 key={index}>
                         {' '}
-                        <div className="SectionParts">{props} </div>
+                        {value} : {Object.values(data.Notions[value])}{' '}
                     </h4>
                 ))}
             </div>
         );
     }
     dismiss() {
-        this.props.unmountSection();
+        const { unmountSection } = this.props;
+        unmountSection();
     }
 
-    nextSection() {
+    nextSection = () => {
         this.dismiss();
-    }
+    };
 
     handleClick1() {
         localStorage.setItem('this.props.name', '1');
@@ -54,12 +54,12 @@ class Section extends React.Component {
         this.nextSection();
     }
     render() {
-        console.log(localStorage.getItem('this.props.name'));
+        const { title, data } = this.state;
         return (
             <div>
                 <h3>{localStorage.getItem('UserName')}</h3>
-                <h1>{this.state.name}</h1>
-                <div>{this.DisplayList(this.state.parts)}</div>
+                <h1>{title}</h1>
+                <div>{this.DisplayParts()}</div>
                 <div className="btn-group">
                     <button onClick={this.handleClick1}>1</button>
                     <button onClick={this.handleClick2}>2</button>

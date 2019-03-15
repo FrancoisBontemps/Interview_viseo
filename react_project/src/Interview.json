@@ -1,0 +1,42 @@
+{
+  "chapters": {
+    "chapter1": {
+      "title": "Basics",
+      "sections": ["Section 1","Section 2","Section 3","Section 4"]
+    }
+  },
+  "sections": {
+    "Section 1": {
+      "title": "Environment",
+      "notions": ["notion1","notion2"]
+    },
+
+    "Section 2": {
+      "title": "Application",
+      "notions": ["notion3"]
+    },
+
+    "Section 3": {
+      "title": "Activity",
+      "notions": ["notion4"]
+    },
+
+    "Section 4": {
+      "title": "Context",
+      "notions": ["notion5"],
+      "questions": ["question1"]
+    }
+  },
+  "Notions": {
+    "notion1": "IDE",
+    "notion2": "Gradle",
+    "notion3": "Application Class",
+    "notion4": "Activities lifeCycles",
+    "notion5": "Context meaning and use"
+  },
+  "questions" : {
+    "question1": {
+      "body" : "Diffenrece between application context and activity context"
+    }
+  }
+}
