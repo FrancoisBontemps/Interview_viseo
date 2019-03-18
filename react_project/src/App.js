@@ -5,6 +5,7 @@ import './App.css';
 import NameForm from './NameForm.js';
 import Chapter from './Chapter';
 import Section from './Section';
+import Resume from './Resume'
 
 class App extends React.Component {
     constructor(props) {
@@ -14,21 +15,33 @@ class App extends React.Component {
             renderChapter: false,
             renderSection: false,
             renderNextSection: false,
+            renderResume : false,
             sectionIndex: 0
         };
     }
     handleFormUnmount = () => {
-        this.setState({ renderForm: false, renderChapter: true });
+        this.setState({ renderForm: false, renderChapter: true,renderResume : false});
     };
     handleChapterUnmount = () => {
-        this.setState({ renderChapter: false, renderSection: true });
+        this.setState({ renderChapter: false, renderSection: true,renderResume : false });
     };
     handleSectionUnmount = () => {
         const { sectionIndex, renderSection, renderNextSection } = this.state;
         this.setState({
             sectionIndex: sectionIndex + 1,
             renderSection: !renderSection,
-            renderNextSection: !renderNextSection
+            renderNextSection: !renderNextSection,
+            renderResume : false
+        });
+    };
+
+    handleResumeUnmount = () => {
+        this.setState({
+            renderChild: false,
+            renderChapter: false,
+            renderSection: false,
+            renderNextSection: false,
+            renderResume: false
         });
     };
     createSection(data) {
@@ -48,6 +61,11 @@ class App extends React.Component {
         const data = require('./Interview');
         const { renderForm, renderChapter, renderSection, renderNextSection, sectionIndex } = this.state;
         console.log(Object.keys(data.sections).length);
+        let moy =4;
+        if(Object.keys(data.sections).length == sectionIndex)
+        {
+            this.state.renderResume = true;
+        }
         return (
             <div className="App">
                 <header className="NameForm">
@@ -72,6 +90,10 @@ class App extends React.Component {
                             ? this.createSection(data)
                             : null}
                     </div>
+                    {this.state.renderResume ? (
+                        <Resume chapnum="chapter1" unmountResume={this.handleResumeUnmount} moyenne={moy} />
+                    ) : null}
+                    
                 </header>
             </div>
         );
