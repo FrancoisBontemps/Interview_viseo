@@ -32,9 +32,16 @@ class Section extends React.Component {
     nextSection = () => {
         this.dismiss();
     };
+    handleClick = Grade => {
+        const { title } = this.state;
+        localStorage.setItem(title, Grade);
+        console.log(title, Grade);
+        this.nextSection();
+    };
 
     handleClick1() {
-        localStorage.setItem('this.props.name', '1');
+        const { title } = this.state;
+        localStorage.setItem(title, '1');
         this.nextSection();
     }
     handleClick2() {
@@ -61,11 +68,19 @@ class Section extends React.Component {
                 <h1>{title}</h1>
                 <div>{this.DisplayParts()}</div>
                 <div className="btn-group">
-                    <button onClick={this.handleClick1}>1</button>
-                    <button onClick={this.handleClick2}>2</button>
-                    <button onClick={this.handleClick3}>3</button>
-                    <button onClick={this.handleClick4}>4</button>
-                    <button onClick={this.handleClick5}>5</button>
+                    <button onClick={this.handleClick(1)}>1</button>
+                    <button id="2" value="2" onClick={this.handleClick(2)}>
+                        2
+                    </button>
+                    <button id="3" value="3" onClick={this.handleClick(3)}>
+                        3
+                    </button>
+                    <button id="4" value="4" onClick={this.handleClick(4)}>
+                        4
+                    </button>
+                    <button id="5" value="5" onClick={this.handleClick(5)}>
+                        5
+                    </button>
                 </div>
             </div>
         );

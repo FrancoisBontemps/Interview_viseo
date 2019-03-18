@@ -3,14 +3,12 @@ import React, { Component } from 'react';
 import logo from './Images/Viseo.png';
 import './App.css';
 import NameForm from './NameForm.js';
-
 import Chapter from './Chapter';
 import Section from './Section';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.compteur = 0;
         this.state = {
             renderForm: true,
             renderChapter: false,
@@ -49,7 +47,7 @@ class App extends React.Component {
     render() {
         const data = require('./Interview');
         const { renderForm, renderChapter, renderSection, renderNextSection, sectionIndex } = this.state;
-
+        console.log(Object.keys(data.sections).length);
         return (
             <div className="App">
                 <header className="NameForm">
@@ -64,8 +62,16 @@ class App extends React.Component {
                             />
                         ) : null}
                     </div>
-                    <div className="Section">{renderSection ? this.createSection(data) : null}</div>
-                    <div className="NextSection">{renderNextSection ? this.createSection(data) : null}</div>
+                    <div className="Section">
+                        {renderSection && sectionIndex < Object.keys(data.sections).length
+                            ? this.createSection(data)
+                            : null}
+                    </div>
+                    <div className="NextSection">
+                        {renderNextSection && sectionIndex < Object.keys(data.sections).length
+                            ? this.createSection(data)
+                            : null}
+                    </div>
                 </header>
             </div>
         );
