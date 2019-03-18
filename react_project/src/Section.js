@@ -68,5 +68,5 @@ class Section extends React.Component {
         );
     }
 }
-//push
+
 export default Section;
