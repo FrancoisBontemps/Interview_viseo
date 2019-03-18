@@ -32,7 +32,8 @@ class Section extends React.Component {
     };
 
     handleChange = (e) => {
-        const sectionId = "section"+this.state.sectionIndex.toString();
+        const num_section = this.state.sectionIndex + 1;
+        const sectionId = "section"+num_section.toString();
         //console.log("sectionId: " + typeof sectionId);
 
         const grade =  e.target.value;

@@ -60,8 +60,17 @@ class App extends React.Component {
     render() {
         const data = require('./Interview');
         const { renderForm, renderChapter, renderSection, renderNextSection, sectionIndex } = this.state;
-        console.log(Object.keys(data.sections).length);
-        let moy =4;
+        const nb_section = Object.keys(data.sections).length;
+        let numNote = new Array();
+        for (let i = 1; i <= nb_section; i++) {
+            numNote.push(localStorage.getItem('section' + i));
+        }
+        console.log('Note ' + numNote);
+        let moy =
+            numNote.reduce(function(acc, val) {
+                return acc + parseInt(val);
+            }, 0) / numNote.length;
+        console.log(moy);
         if(Object.keys(data.sections).length == sectionIndex)
         {
             this.state.renderResume = true;
@@ -93,7 +102,7 @@ class App extends React.Component {
                     {this.state.renderResume ? (
                         <Resume chapnum="chapter1" unmountResume={this.handleResumeUnmount} moyenne={moy} />
                     ) : null}
-                    
+
                 </header>
             </div>
         );
