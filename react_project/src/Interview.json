@@ -8,7 +8,7 @@
       "sections": ["Section 5"]
     },"chapter3": {
       "title": "Data",
-      "sections": ["Section 6"]
+      "sections": ["Section 6","Section 7"]
     }
   },
   "sections": {
@@ -34,13 +34,16 @@
     },
     "Section 5": {
       "title": "Algorithm",
-      "notions": ["notion5"],
-      "questions": ["question1"]
+      "notions": ["notion6"],
+      "questions": ["question2"]
     },
     "Section 6": {
       "title": "DataBase",
-      "notions": ["notion1"],
-      "questions": ["question1"]
+      "notions": ["notion7"]
+    },
+    "Section 7": {
+      "title": "Data Ethic",
+      "notions": ["notion8"]
     }
 
   },
@@ -49,11 +52,17 @@
     "notion2": "Gradle",
     "notion3": "Application Class",
     "notion4": "Activities lifeCycles",
-    "notion5": "Context meaning and use"
+    "notion5": "Context meaning and use",
+    "notion6": "Fibonnaci",
+    "notion7": "SQL",
+    "notion8": "RGPD"
   },
   "questions" : {
     "question1": {
       "body" : "Diffenrece between application context and activity context"
+    },    "question2": {
+      "body" : "Utility recursive and iterative"
     }
+
   }
 }

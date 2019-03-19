@@ -13,7 +13,7 @@ class Chapter extends React.Component {
         this.dismiss();
     };
 
-    DisplayList(chap) {
+    DisplayList() {
         let arr = new Array();
         const {chapnum,data} = this.state;
         let section = data.chapters['chapter'+chapnum].sections;
@@ -40,7 +40,7 @@ class Chapter extends React.Component {
             <div>
                 <h3>{localStorage.getItem('UserName')}</h3>
                 <h1>Chapitre  {chapnum} : {data.chapters['chapter'+chapnum].title}</h1>
-                <div>{this.DisplayList(chapnum)}</div>
+                <div>{this.DisplayList()}</div>
                 <button onClick={this.handleClick}>Démarrez</button>
             </div>
         );

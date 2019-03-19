@@ -4,29 +4,47 @@ class Resume extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { chapnum: props.chapnum, moyenne: props.moyenne };
+        this.state = { chapnum: props.chapnum, moyenne: props.moyenne, appreciation : '' };
     }
     dismiss() {
         const { ResumeUnmount } = this.props;
         ResumeUnmount();
     }
-    handleSubmit = e => {
-        e.preventDefault();
+    handleChange = ({ target }) => {
+        this.setState({ appreciation: target.value });
+        };
+
+    handleSubmit = event => {
+        const {chapnum,appreciation} = this.state;
+        const appreciationId = 'Appreciation' + chapnum;
+        localStorage.setItem(appreciationId, appreciation);
+        event.preventDefault();
         this.dismiss();
-    }
+    };
+
     render() {
-        return (
+        const {appreciation} = this.state;
+            return (
             <form className="Form" onSubmit={this.handleSubmit}>
                 <div>
-                    <h1> Résumé {this.state.chapnum}</h1>
+                    <h1> Résumé Chapitre {this.state.chapnum}</h1>
                     <div>
-                        Résultat {this.state.chapnum} : {this.state.moyenne} / 5
+                        Moyenne du Chapitre {this.state.chapnum} : {this.state.moyenne}
                     </div>
+
                 </div>
-                <button onClick={this.handleSubmit} type="submit" value="Démarrez" align="center">
-                    Suivant
-                </button>
-                ;
+                <label>
+                    Appreciation :
+                    <input
+                        type="text"
+                        color={'green'}
+                        value={appreciation}
+                        onChange={this.handleChange}
+                        placeholder="Appreciation"
+                    />
+                </label>
+                <input type="submit" value="Suivant" align="center" />
+
             </form>
     )
     }

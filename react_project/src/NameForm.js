@@ -11,8 +11,9 @@ class NameForm extends React.Component {
     }
 
     handleChange = ({ target }) => {
-        this.setState({ username: target.username });
+        this.setState({ username: target.value });
     };
+
     handleSubmit = event => {
         const { username } = this.state;
         event.preventDefault();
