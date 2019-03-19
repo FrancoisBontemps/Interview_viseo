@@ -5,23 +5,25 @@ import './App.css';
 import NameForm from './NameForm.js';
 import Chapter from './Chapter';
 import Section from './Section';
+import Resume from './Resume';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            renderForm: true,
-            renderChapter: false,
-            renderSection: false,
-            renderNextSection: false,
-            sectionIndex: 0
-        };
-    }
+    state = {
+        renderForm: true,
+        renderChapter: false,
+        renderSection: false,
+        renderNextSection: false,
+        renderResume: false,
+        sectionIndex: 0
+    };
     handleFormUnmount = () => {
         this.setState({ renderForm: false, renderChapter: true });
     };
     handleChapterUnmount = () => {
         this.setState({ renderChapter: false, renderSection: true });
+    };
+    handleResumeUnmount = () => {
+        this.setState({ renderResume: false });
     };
     handleSectionUnmount = () => {
         const { sectionIndex, renderSection, renderNextSection } = this.state;
@@ -30,9 +32,14 @@ class App extends React.Component {
             renderSection: !renderSection,
             renderNextSection: !renderNextSection
         });
+
+        if (sectionIndex === 3) {
+            this.setState({ renderResume: true });
+        }
     };
     createSection(data) {
         const { sectionIndex } = this.state;
+        console.log(Object.values(data.sections)[sectionIndex].title);
         return (
             <div>
                 <Section
@@ -44,10 +51,21 @@ class App extends React.Component {
             </div>
         );
     }
+    Calc_Moy(data) {
+        const nb_section = Object.keys(data.sections).length;
+        let numNote = new Array();
+        for (let i = 1; i <= nb_section; i++) {
+            numNote.push(localStorage.getItem('section' + i));
+        }
+        let moy =
+            numNote.reduce(function(acc, val) {
+                return acc + parseInt(val);
+            }, 0) / numNote.length;
+        return moy;
+    }
     render() {
-        const data = require('./Interview');
-        const { renderForm, renderChapter, renderSection, renderNextSection, sectionIndex } = this.state;
-        console.log(Object.keys(data.sections).length);
+        const { renderForm, renderChapter, renderSection, renderNextSection, sectionIndex, renderResume } = this.state;
+
         return (
             <div className="App">
                 <header className="NameForm">
@@ -71,6 +89,15 @@ class App extends React.Component {
                         {renderNextSection && sectionIndex < Object.keys(data.sections).length
                             ? this.createSection(data)
                             : null}
+                    </div>
+                    <div className="Resume">
+                        {renderResume ? (
+                            <Resume
+                                moyenne={this.Calc_Moy(data)}
+                                chapnum={data.chapters.chapter1.title}
+                                unmountResume={this.handleResumeUnmount}
+                            />
+                        ) : null}
                     </div>
                 </header>
             </div>

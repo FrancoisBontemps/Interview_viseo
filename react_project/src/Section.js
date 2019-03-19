@@ -1,15 +1,9 @@
 import React from 'react';
-import './Section.css';
 
 class Section extends React.Component {
     constructor(props) {
         super(props);
         this.state = { title: props.title, data: props.data, sectionIndex: props.sectionIndex };
-        this.handleClick1 = this.handleClick1.bind(this);
-        this.handleClick2 = this.handleClick2.bind(this);
-        this.handleClick3 = this.handleClick3.bind(this);
-        this.handleClick4 = this.handleClick4.bind(this);
-        this.handleClick5 = this.handleClick5.bind(this);
     }
     DisplayParts() {
         const { sectionIndex, data } = this.state;
@@ -32,34 +26,20 @@ class Section extends React.Component {
     nextSection = () => {
         this.dismiss();
     };
-    handleClick = Grade => {
-        const { title } = this.state;
-        localStorage.setItem(title, Grade);
-        console.log(title, Grade);
+    handleChange = e => {
+        const { sectionIndex } = this.state;
+        const sectionId = 'section' + sectionIndex.toString();
+        //console.log("sectionId: " + typeof sectionId);
+
+        const grade = e.target.value;
+        //console.log("grade: " + typeof grade+ " " + grade);
+
+        localStorage.setItem(sectionId, grade);
+        //console.log("section grade: " + localStorage.getItem(sectionId))
+
         this.nextSection();
     };
 
-    handleClick1() {
-        const { title } = this.state;
-        localStorage.setItem(title, '1');
-        this.nextSection();
-    }
-    handleClick2() {
-        localStorage.setItem('this.props.name', '2');
-        this.nextSection();
-    }
-    handleClick3() {
-        localStorage.setItem('this.props.name', '3');
-        this.nextSection();
-    }
-    handleClick4() {
-        localStorage.setItem('this.props.name', '4');
-        this.nextSection();
-    }
-    handleClick5() {
-        localStorage.setItem('this.props.name', '5');
-        this.nextSection();
-    }
     render() {
         const { title, data } = this.state;
         return (
@@ -67,18 +47,21 @@ class Section extends React.Component {
                 <h3>{localStorage.getItem('UserName')}</h3>
                 <h1>{title}</h1>
                 <div>{this.DisplayParts()}</div>
-                <div className="btn-group">
-                    <button onClick={this.handleClick(1)}>1</button>
-                    <button id="2" value="2" onClick={this.handleClick(2)}>
+
+                <div onClick={this.handleChange} id="aBtnGroup" className="btn-group">
+                    <button type="button" value="1" className="btn btn-default">
+                        1
+                    </button>
+                    <button type="button" value="2" className="btn btn-default">
                         2
                     </button>
-                    <button id="3" value="3" onClick={this.handleClick(3)}>
+                    <button type="button" value="3" className="btn btn-default">
                         3
                     </button>
-                    <button id="4" value="4" onClick={this.handleClick(4)}>
+                    <button type="button" value="4" className="btn btn-default">
                         4
                     </button>
-                    <button id="5" value="5" onClick={this.handleClick(5)}>
+                    <button type="button" value="5" className="btn btn-default">
                         5
                     </button>
                 </div>
