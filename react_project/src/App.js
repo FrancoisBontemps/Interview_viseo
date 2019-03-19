@@ -6,7 +6,7 @@ import NameForm from './NameForm.js';
 import Chapter from './Chapter';
 import Section from './Section';
 import Resume from './Resume';
-import ResumeAllChapter from './ResumeAllChapter';
+import ResumeAllChapter from './ResumeAllChap';
 
 const data = require('./Interview');
 
@@ -17,11 +17,11 @@ class App extends React.Component {
         renderSection: false,
         renderNextSection: false,
         renderResume: false,
-        renderResumeAllChapter : false,
-        chapterIndex : 1,
+        renderResumeAllChapter: false,
+        chapterIndex: 1,
         sectionIndex: 0,
-        note : [],
-        appreciations : []
+        note: [],
+        appreciations: []
     };
     handleFormUnmount = () => {
         this.setState({ renderForm: false, renderChapter: true, renderResume: false });
@@ -34,39 +34,39 @@ class App extends React.Component {
         this.setState({
             sectionIndex: sectionIndex + 1,
             renderSection: !renderSection,
-            renderNextSection: !renderNextSection,
+            renderNextSection: !renderNextSection
         });
-        if(data.chapters['chapter'+chapterIndex].sections.length === sectionIndex + 1 )
-        {
+        if (data.chapters['chapter' + chapterIndex].sections.length === sectionIndex + 1) {
             this.setState({
-                renderResume : true
-            });}
+                renderResume: true
+            });
+        }
     };
 
     handleResumeUnmount = () => {
-        const { chapterIndex,appreciations } = this.state;
+        const { chapterIndex, appreciations } = this.state;
         this.setState({
             renderChild: false,
             renderChapter: true,
             renderSection: false,
             renderNextSection: false,
             renderResume: false,
-            sectionIndex : 0,
-            chapterIndex : chapterIndex + 1
+            sectionIndex: 0,
+            chapterIndex: chapterIndex + 1
         });
 
         appreciations.push(localStorage.getItem('Appreciation' + chapterIndex));
 
-        if (Object.keys(data.chapters).length  === chapterIndex) {
-
+        if (Object.keys(data.chapters).length === chapterIndex) {
             this.setState({
                 renderResumeAllChapter: true,
                 renderChapter: false,
-                chapterIndex : 1});
+                chapterIndex: 1
+            });
         }
     };
     createSection(data) {
-        const { sectionIndex , chapterIndex} = this.state;
+        const { sectionIndex, chapterIndex } = this.state;
         return (
             <div>
                 <Section
@@ -79,11 +79,23 @@ class App extends React.Component {
         );
     }
     render() {
-        const { renderForm, renderChapter,renderResume, renderSection, renderNextSection, sectionIndex, renderResumeAllChapter, chapterIndex,note,appreciations} = this.state;
+        const {
+            renderForm,
+            renderChapter,
+            renderResume,
+            renderSection,
+            renderNextSection,
+            sectionIndex,
+            renderResumeAllChapter,
+            chapterIndex,
+            note,
+            appreciations
+        } = this.state;
         let numNote = new Array();
-        for (let i = 1; i <= data.chapters['chapter'+chapterIndex].sections.length; i++) {
+        for (let i = 1; i <= data.chapters['chapter' + chapterIndex].sections.length; i++) {
             numNote.push(localStorage.getItem('section' + i));
         }
+
         let moy = numNote.reduce(function(acc, val) {
             return acc + parseInt(val);
         }, 0);
@@ -93,8 +105,8 @@ class App extends React.Component {
             moy = moy / numNote.length;
         }
 
-        if(chapterIndex < Object.keys(data.chapters).length +1 ){
-            if(data.chapters['chapter'+chapterIndex].sections.length  === sectionIndex ) {
+        if (chapterIndex < Object.keys(data.chapters).length + 1) {
+            if (data.chapters['chapter' + chapterIndex].sections.length === sectionIndex) {
                 note.push(moy);
             }
         }
@@ -104,35 +116,33 @@ class App extends React.Component {
                     <img src={logo} className="App-logo" />
                     <div className="Form">{renderForm ? <NameForm FormUnmount={this.handleFormUnmount} /> : null}</div>
                     <div className="Chapter">
-                        {renderChapter && chapterIndex < Object.keys(data.chapters).length +1 ? (
-                            <Chapter
-                                chapnum={chapterIndex}
-                                data = {data}
-                                unmountChapter={this.handleChapterUnmount}
-                            />
+                        {renderChapter && chapterIndex < Object.keys(data.chapters).length + 1 ? (
+                            <Chapter chapnum={chapterIndex} data={data} unmountChapter={this.handleChapterUnmount} />
                         ) : null}
                     </div>
                     <div className="Section">
-                        {renderSection && sectionIndex < data.chapters['chapter'+chapterIndex].sections.length
+                        {renderSection && sectionIndex < data.chapters['chapter' + chapterIndex].sections.length
                             ? this.createSection(data)
                             : null}
                     </div>
                     <div className="NextSection">
-                        {renderNextSection && sectionIndex < data.chapters['chapter'+chapterIndex].sections.length
+                        {renderNextSection && sectionIndex < data.chapters['chapter' + chapterIndex].sections.length
                             ? this.createSection(data)
                             : null}
                     </div>
                     <div className="Resume">
-                    {renderResume ? (
-                        <Resume chapnum={chapterIndex}
+                        {renderResume ? (
+                            <Resume
+                                chapnum={chapterIndex}
                                 ResumeUnmount={this.handleResumeUnmount}
-                                moyenne={note[chapterIndex-1]} />
-                    ) : null}
+                                moyenne={note[chapterIndex - 1]}
+                            />
+                        ) : null}
                     </div>
                     <div className="ResumeAllChapter">
-                        {renderResumeAllChapter
-                            ? <ResumeAllChapter tabNote = {note} tabAppreciation = {appreciations}/>
-                            : null}
+                        {renderResumeAllChapter ? (
+                            <ResumeAllChapter tabNote={note} tabAppreciation={appreciations} />
+                        ) : null}
                     </div>
                 </header>
             </div>

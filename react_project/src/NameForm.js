@@ -1,10 +1,8 @@
 import React from 'react';
 
 class NameForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { username: '', renderChapter: true };
-    }
+    state = { username: '' };
+
     dismiss() {
         const { FormUnmount } = this.props;
         FormUnmount();
@@ -19,7 +17,7 @@ class NameForm extends React.Component {
         event.preventDefault();
         localStorage.setItem('UserName', username);
         this.dismiss();
-    }
+    };
 
     render() {
         const { username } = this.state;

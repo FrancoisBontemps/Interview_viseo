@@ -1,21 +1,18 @@
 import React from 'react';
 
 class Resume extends React.Component {
+    state = { appreciation: '' };
 
-    constructor(props) {
-        super(props);
-        this.state = { chapnum: props.chapnum, moyenne: props.moyenne, appreciation : '' };
-    }
     dismiss() {
         const { ResumeUnmount } = this.props;
         ResumeUnmount();
     }
     handleChange = ({ target }) => {
         this.setState({ appreciation: target.value });
-        };
+    };
 
     handleSubmit = event => {
-        const {chapnum,appreciation} = this.state;
+        const { chapnum, appreciation } = this.props;
         const appreciationId = 'Appreciation' + chapnum;
         localStorage.setItem(appreciationId, appreciation);
         event.preventDefault();
@@ -23,15 +20,14 @@ class Resume extends React.Component {
     };
 
     render() {
-        const {appreciation} = this.state;
-            return (
+        const { appreciation } = this.state;
+        return (
             <form className="Form" onSubmit={this.handleSubmit}>
                 <div>
-                    <h1> Résumé Chapitre {this.state.chapnum}</h1>
+                    <h1> Résumé Chapitre {this.props.chapnum}</h1>
                     <div>
-                        Moyenne du Chapitre {this.state.chapnum} : {this.state.moyenne}
+                        Moyenne du Chapitre {this.props.chapnum} : {this.props.moyenne}
                     </div>
-
                 </div>
                 <label>
                     Appreciation :
@@ -44,9 +40,8 @@ class Resume extends React.Component {
                     />
                 </label>
                 <input type="submit" value="Suivant" align="center" />
-
             </form>
-    )
+        );
     }
 }
 export default Resume;

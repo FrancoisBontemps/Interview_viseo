@@ -3,28 +3,17 @@ import './Section.css';
 import { GradeDisplay } from './GradeDisplay';
 
 class Section extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: props.title,
-            data: props.data,
-            chapterIndex: props.chapterIndex,
-            sectionIndex: props.sectionIndex
-        };
-    }
-    DisplayTitle(){
-        const { chapterIndex,sectionIndex, data } = this.state;
-        const sect= data.chapters['chapter'+chapterIndex].sections[sectionIndex];
+    DisplayTitle() {
+        const { chapterIndex, sectionIndex, data } = this.props;
+        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
 
-        return   <h1>{data.sections[sect].title}</h1>
-
+        return <h1>{data.sections[sect].title}</h1>;
     }
     DisplayNotions() {
+        const { chapterIndex, sectionIndex, data } = this.props;
+        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
 
-        const { chapterIndex,sectionIndex, data } = this.state;
-        const sect= data.chapters['chapter'+chapterIndex].sections[sectionIndex];
-
-        if(data.sections[sect].notions !== undefined) {
+        if (data.sections[sect].notions !== undefined) {
             return (
                 <div>
                     {data.sections[sect].notions.map((value, index) => (
@@ -35,14 +24,13 @@ class Section extends React.Component {
                     ))}
                 </div>
             );
-        }
-        else return;
+        } else return;
     }
     DisplayQuestions() {
-        const { chapterIndex,sectionIndex, data } = this.state;
-        const sect= data.chapters['chapter'+chapterIndex].sections[sectionIndex];
+        const { chapterIndex, sectionIndex, data } = this.props;
+        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
 
-        if(data.sections[sect].questions !== undefined) {
+        if (data.sections[sect].questions !== undefined) {
             return (
                 <div>
                     {data.sections[sect].questions.map((value, index) => (
@@ -52,10 +40,8 @@ class Section extends React.Component {
                         </h4>
                     ))}
                 </div>
-
             );
-        }
-        else return;
+        } else return;
     }
 
     dismiss() {
@@ -68,7 +54,7 @@ class Section extends React.Component {
     };
 
     handleChange = e => {
-        const { sectionIndex } = this.state;
+        const { sectionIndex } = this.props;
         const sectionId = 'section' + (sectionIndex + 1);
         const grade = e.target.value;
         localStorage.setItem(sectionId, grade);
