@@ -14,18 +14,16 @@ class Chapter extends React.Component {
     };
 
     DisplayList(secs) {
-        let arr = new Array();
-        for (let val of Object.values(secs)) {
-            arr.push(val.title);
-        }
         return (
             <div>
-                {arr.map((value, index) => (
-                    <h4 key={index}>
-                        {' '}
-                        {Object.keys(secs)[index]} : {value}{' '}
-                    </h4>
-                ))}
+                {Object.values(secs)
+                    .map(value => value.title)
+                    .map((value, index) => (
+                        <h4 key={index}>
+                            {' '}
+                            {Object.keys(secs)[index]} : {value}{' '}
+                        </h4>
+                    ))}
             </div>
         );
     }

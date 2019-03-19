@@ -13,7 +13,6 @@ class Resume extends React.Component {
     handleSubmit = (e) =>{
         e.preventDefault();
         this.dismiss();
-        console.log("clicker");
     }
     render() {
         return (

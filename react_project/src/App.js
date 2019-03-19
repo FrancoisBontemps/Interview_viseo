@@ -46,12 +46,7 @@ class App extends React.Component {
         const { sectionIndex } = this.state;
         return (
             <div>
-                <Section
-                    title={Object.values(data.sections)[sectionIndex].title}
-                    data={data}
-                    sectionIndex={sectionIndex}
-                    unmountSection={this.handleSectionUnmount}
-                />
+                <Section data={data} sectionIndex={sectionIndex} unmountSection={this.handleSectionUnmount} />
             </div>
         );
     }
@@ -62,10 +57,14 @@ class App extends React.Component {
         for (let i = 1; i <= nb_section; i++) {
             numNote.push(localStorage.getItem('section' + i));
         }
-        let moy =
-            numNote.reduce(function(acc, val) {
-                return acc + parseInt(val);
-            }, 0) / numNote.length;
+        let moy = numNote.reduce(function(acc, val) {
+            return acc + parseInt(val);
+        }, 0);
+        if (numNote.length === 0) {
+            moy = 0;
+        } else {
+            moy = moy / numNote.length;
+        }
         if (Object.keys(data.sections).length === sectionIndex) {
             this.state.renderResume = true;
         }
