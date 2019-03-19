@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="deff4cef-d307-44a6-b057-513c001c6f4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ResumeAllChap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chapter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NameForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/NameForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resume.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resume.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ResumeAllChapter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Section.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Section.js" afterDir="false" />
-    </list>
+    <list default="true" id="deff4cef-d307-44a6-b057-513c001c6f4e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -183,16 +173,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553001962589</updated>
-      <workItem from="1553001963903" duration="12514000" />
+      <workItem from="1553001963903" duration="12918000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12514000" />
+    <option name="totallyTimeSpent" value="12918000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="npm" side_tool="true" />
       <window_info id="Favorites" side_tool="true" />
