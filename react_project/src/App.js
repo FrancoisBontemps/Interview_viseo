@@ -5,34 +5,32 @@ import './App.css';
 import NameForm from './NameForm.js';
 import Chapter from './Chapter';
 import Section from './Section';
-import Resume from './Resume'
+import Resume from './Resume';
+
+const data = require('./Interview');
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            renderForm: true,
-            renderChapter: false,
-            renderSection: false,
-            renderNextSection: false,
-            renderResume : false,
-            sectionIndex: 0
-        };
-    }
+    state = {
+        renderForm: true,
+        renderChapter: false,
+        renderSection: false,
+        renderNextSection: false,
+        renderResume: false,
+        sectionIndex: 0
+    };
     handleFormUnmount = () => {
-        this.setState({ renderForm: false, renderChapter: true,renderResume : false});
+        this.setState({ renderForm: false, renderChapter: true, renderResume: false });
     };
     handleChapterUnmount = () => {
-        this.setState({ renderChapter: false, renderSection: true,renderResume : false });
+        this.setState({ renderChapter: false, renderSection: true, renderResume: false });
     };
     handleSectionUnmount = () => {
-        const { sectionIndex, renderSection, renderNextSection } = this.state;
-        this.setState({
+        this.setState(({ sectionIndex, renderSection, renderNextSection }) => ({
             sectionIndex: sectionIndex + 1,
             renderSection: !renderSection,
             renderNextSection: !renderNextSection,
-            renderResume : false
-        });
+            renderResume: false
+        }));
     };
 
     handleResumeUnmount = () => {
@@ -58,21 +56,17 @@ class App extends React.Component {
         );
     }
     render() {
-        const data = require('./Interview');
         const { renderForm, renderChapter, renderSection, renderNextSection, sectionIndex } = this.state;
         const nb_section = Object.keys(data.sections).length;
         let numNote = new Array();
         for (let i = 1; i <= nb_section; i++) {
             numNote.push(localStorage.getItem('section' + i));
         }
-        console.log('Note ' + numNote);
         let moy =
             numNote.reduce(function(acc, val) {
                 return acc + parseInt(val);
             }, 0) / numNote.length;
-        console.log(moy);
-        if(Object.keys(data.sections).length == sectionIndex)
-        {
+        if (Object.keys(data.sections).length === sectionIndex) {
             this.state.renderResume = true;
         }
         return (
@@ -102,7 +96,6 @@ class App extends React.Component {
                     {this.state.renderResume ? (
                         <Resume chapnum="chapter1" unmountResume={this.handleResumeUnmount} moyenne={moy} />
                     ) : null}
-
                 </header>
             </div>
         );

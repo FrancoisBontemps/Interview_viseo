@@ -7,7 +7,8 @@ class Section extends React.Component {
         this.state = {
             title: props.title,
             data: props.data,
-            sectionIndex: props.sectionIndex };
+            sectionIndex: props.sectionIndex
+        };
     }
     DisplayParts() {
         const { sectionIndex, data } = this.state;
@@ -31,12 +32,12 @@ class Section extends React.Component {
         this.dismiss();
     };
 
-    handleChange = (e) => {
-        const num_section = this.state.sectionIndex + 1;
-        const sectionId = "section"+num_section.toString();
-        //console.log("sectionId: " + typeof sectionId);
+    handleChange = e => {
+        const { sectionIndex } = this.state;
+        const sectionId = 'section' + sectionIndex.toString();
+        console.log('sectionId: ' + sectionId);
 
-        const grade =  e.target.value;
+        const grade = e.target.value;
         //console.log("grade: " + typeof grade+ " " + grade);
 
         localStorage.setItem(sectionId, grade);
@@ -52,19 +53,23 @@ class Section extends React.Component {
                 <h3>{localStorage.getItem('UserName')}</h3>
                 <h1>{title}</h1>
                 <div>{this.DisplayParts()}</div>
-
-
                 <div onClick={this.handleChange} id="aBtnGroup" className="btn-group">
-                    <button type="button" value="1" className="btn btn-default">1</button>
-                    <button type="button" value="2" className="btn btn-default">2</button>
-                    <button type="button" value="3" className="btn btn-default">3</button>
-                    <button type="button" value="4" className="btn btn-default">4</button>
-                    <button type="button" value="5" className="btn btn-default">5</button>
+                    <button type="button" value="1" className="btn btn-default">
+                        1
+                    </button>
+                    <button type="button" value="2" className="btn btn-default">
+                        2
+                    </button>
+                    <button type="button" value="3" className="btn btn-default">
+                        3
+                    </button>
+                    <button type="button" value="4" className="btn btn-default">
+                        4
+                    </button>
+                    <button type="button" value="5" className="btn btn-default">
+                        5
+                    </button>
                 </div>
-
-
-
-
             </div>
         );
     }
