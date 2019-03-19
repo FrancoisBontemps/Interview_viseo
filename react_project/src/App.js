@@ -50,7 +50,7 @@ class App extends React.Component {
                     title={Object.values(data.sections)[sectionIndex].title}
                     data={data}
                     sectionIndex={sectionIndex}
-                    unmountSection={this.handleSectionUnmount}
+                    SectionUnmount={this.handleSectionUnmount}
                 />
             </div>
         );
@@ -66,20 +66,20 @@ class App extends React.Component {
             numNote.reduce(function(acc, val) {
                 return acc + parseInt(val);
             }, 0) / numNote.length;
-        if (Object.keys(data.sections).length === sectionIndex) {
+        if (nb_section === sectionIndex) {
             this.state.renderResume = true;
         }
         return (
             <div className="App">
                 <header className="NameForm">
                     <img src={logo} className="App-logo" />
-                    <div className="Form">{renderForm ? <NameForm unmountForm={this.handleFormUnmount} /> : null}</div>
+                    <div className="Form">{renderForm ? <NameForm FormUnmount={this.handleFormUnmount} /> : null}</div>
                     <div className="Chapter">
                         {renderChapter ? (
                             <Chapter
                                 chapnum={'Chapitre 1 : ' + data.chapters.chapter1.title}
                                 sections={data.sections}
-                                unmountChapter={this.handleChapterUnmount}
+                                ChapterUnmount={this.handleChapterUnmount}
                             />
                         ) : null}
                     </div>
@@ -94,7 +94,7 @@ class App extends React.Component {
                             : null}
                     </div>
                     {this.state.renderResume ? (
-                        <Resume chapnum="chapter1" unmountResume={this.handleResumeUnmount} moyenne={moy} />
+                        <Resume chapnum="chapter1" ResumeUnmount={this.handleResumeUnmount} moyenne={moy} />
                     ) : null}
                 </header>
             </div>

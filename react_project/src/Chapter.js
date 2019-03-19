@@ -6,24 +6,20 @@ class Chapter extends React.Component {
         this.state = { chapnum: props.chapnum, sections: props.sections };
     }
     dismiss() {
-        const { unmountChapter } = this.props;
-        unmountChapter();
+        const { ChapterUnmount } = this.props;
+        ChapterUnmount();
     }
     handleClick = () => {
         this.dismiss();
     };
 
     DisplayList(secs) {
-        let arr = new Array();
-        for (let val of Object.values(secs)) {
-            arr.push(val.title);
-        }
         return (
             <div>
-                {arr.map((value, index) => (
+                {Object.values(secs).map((value, index) => (
                     <h4 key={index}>
                         {' '}
-                        {Object.keys(secs)[index]} : {value}{' '}
+                        {Object.keys(secs)[index]} : {value.title}{' '}
                     </h4>
                 ))}
             </div>

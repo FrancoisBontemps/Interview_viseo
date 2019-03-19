@@ -24,8 +24,8 @@ class Section extends React.Component {
         );
     }
     dismiss() {
-        const { unmountSection } = this.props;
-        unmountSection();
+        const { SectionUnmount } = this.props;
+        SectionUnmount();
     }
 
     nextSection = () => {
@@ -34,20 +34,16 @@ class Section extends React.Component {
 
     handleChange = e => {
         const { sectionIndex } = this.state;
-        const sectionId = 'section' + sectionIndex.toString();
+        const sectionId = 'section' + (sectionIndex + 1);
         console.log('sectionId: ' + sectionId);
-
         const grade = e.target.value;
-        //console.log("grade: " + typeof grade+ " " + grade);
-
         localStorage.setItem(sectionId, grade);
-        //console.log("section grade: " + localStorage.getItem(sectionId))
-
         this.nextSection();
     };
 
     render() {
-        const { title, data } = this.state;
+        const { data } = this.props;
+        const title = Object.values(data.sections)[this.props.sectionIndex].title;
         return (
             <div>
                 <h3>{localStorage.getItem('UserName')}</h3>

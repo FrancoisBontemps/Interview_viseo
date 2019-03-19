@@ -24,28 +24,3 @@
     background-color: #3e8e41;
 }
 
-.Padding{
-    padding-left:20%;
-}
-
-.Gris{
-
-    border : none;
-    background-color: darkgray;
-    width : 400px;
-    height : 100px;
-    margin-left: 37%;
-}
-.SectionParts{
-    color: black;
-    padding-top: 9%;
-
-}
-
-.None{
-    font-family : Noto Sans, sans-serif ;
-    border : 0px;
-    color : #000000;
-    text-align :center;
-    padding-top : 15%;
-}
