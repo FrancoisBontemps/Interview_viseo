@@ -6,8 +6,8 @@ class Chapter extends React.Component {
         this.state = { chapnum: props.chapnum, sections: props.sections };
     }
     dismiss() {
-        const { unmountChapter } = this.props;
-        unmountChapter();
+        const { ChapterUnmount } = this.props;
+        ChapterUnmount();
     }
     handleClick = () => {
         this.dismiss();
@@ -16,14 +16,12 @@ class Chapter extends React.Component {
     DisplayList(secs) {
         return (
             <div>
-                {Object.values(secs)
-                    .map(value => value.title)
-                    .map((value, index) => (
-                        <h4 key={index}>
-                            {' '}
-                            {Object.keys(secs)[index]} : {value}{' '}
-                        </h4>
-                    ))}
+                {Object.values(secs).map((value, index) => (
+                    <h4 key={index}>
+                        {' '}
+                        {Object.keys(secs)[index]} : {value.title}{' '}
+                    </h4>
+                ))}
             </div>
         );
     }

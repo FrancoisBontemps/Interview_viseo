@@ -6,6 +6,7 @@ class Section extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            title: props.title,
             data: props.data,
             sectionIndex: props.sectionIndex
         };
@@ -24,8 +25,8 @@ class Section extends React.Component {
         );
     }
     dismiss() {
-        const { unmountSection } = this.props;
-        unmountSection();
+        const { SectionUnmount } = this.props;
+        SectionUnmount();
     }
 
     nextSection = () => {
@@ -34,7 +35,7 @@ class Section extends React.Component {
 
     handleChange = e => {
         const { sectionIndex } = this.state;
-        const sectionId = 'section' + sectionIndex;
+        const sectionId = 'section' + (sectionIndex + 1);
         console.log('sectionId: ' + sectionId);
         const grade = e.target.value;
         localStorage.setItem(sectionId, grade);
