@@ -3,6 +3,12 @@
     "chapter1": {
       "title": "Basics",
       "sections": ["Section 1","Section 2","Section 3","Section 4"]
+    },"chapter2": {
+      "title": "Program Code",
+      "sections": ["Section 5"]
+    },"chapter3": {
+      "title": "Data",
+      "sections": ["Section 6"]
     }
   },
   "sections": {
@@ -25,7 +31,18 @@
       "title": "Context",
       "notions": ["notion5"],
       "questions": ["question1"]
+    },
+    "Section 5": {
+      "title": "Algorithm",
+      "notions": ["notion5"],
+      "questions": ["question1"]
+    },
+    "Section 6": {
+      "title": "DataBase",
+      "notions": ["notion1"],
+      "questions": ["question1"]
     }
+
   },
   "Notions": {
     "notion1": "IDE",

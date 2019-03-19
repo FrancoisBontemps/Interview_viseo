@@ -3,23 +3,31 @@ import React from 'react';
 class Chapter extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { chapnum: props.chapnum, sections: props.sections };
+        this.state = { chapnum: props.chapnum, data: props.data};
     }
     dismiss() {
-        const { ChapterUnmount } = this.props;
-        ChapterUnmount();
+        const { unmountChapter } = this.props;
+        unmountChapter();
     }
     handleClick = () => {
         this.dismiss();
     };
 
-    DisplayList(secs) {
+    DisplayList(chap) {
+        let arr = new Array();
+        const {chapnum,data} = this.state;
+        let section = data.chapters['chapter'+chapnum].sections;
+        for (let val of section) {
+            let valeur = data.sections[val];
+
+            arr.push(valeur.title);
+        }
         return (
             <div>
-                {Object.values(secs).map((value, index) => (
+                {arr.map((value, index) => (
                     <h4 key={index}>
                         {' '}
-                        {Object.keys(secs)[index]} : {value.title}{' '}
+                        {1+parseInt(Object.keys(section)[index])} : {value}{' '}
                     </h4>
                 ))}
             </div>
@@ -27,13 +35,12 @@ class Chapter extends React.Component {
     }
 
     render() {
-        const { chapnum, sections } = this.state;
-
+        const { chapnum, data } = this.state;
         return (
             <div>
                 <h3>{localStorage.getItem('UserName')}</h3>
-                <h1>{chapnum}</h1>
-                <div>{this.DisplayList(sections)}</div>
+                <h1>Chapitre  {chapnum} : {data.chapters['chapter'+chapnum].title}</h1>
+                <div>{this.DisplayList(chapnum)}</div>
                 <button onClick={this.handleClick}>Démarrez</button>
             </div>
         );

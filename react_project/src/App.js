@@ -16,6 +16,7 @@ class App extends React.Component {
         renderSection: false,
         renderNextSection: false,
         renderResume: false,
+        chapterIndex : 1,
         sectionIndex: 0
     };
     handleFormUnmount = () => {
@@ -34,12 +35,15 @@ class App extends React.Component {
     };
 
     handleResumeUnmount = () => {
+        const { chapterIndex } = this.state;
         this.setState({
             renderChild: false,
-            renderChapter: false,
+            renderChapter: true,
             renderSection: false,
             renderNextSection: false,
-            renderResume: false
+            renderResume: false,
+            sectionIndex : 0,
+            chapterIndex : chapterIndex + 1
         });
     };
     createSection(data) {
@@ -51,7 +55,8 @@ class App extends React.Component {
         );
     }
     render() {
-        const { renderForm, renderChapter, renderSection, renderNextSection, sectionIndex } = this.state;
+        const { renderForm, renderChapter, renderSection, renderNextSection, sectionIndex, chapterIndex } = this.state;
+        console.log(chapterIndex);
         const nb_section = Object.keys(data.sections).length;
         let numNote = new Array();
         for (let i = 1; i <= nb_section; i++) {
@@ -74,11 +79,11 @@ class App extends React.Component {
                     <img src={logo} className="App-logo" />
                     <div className="Form">{renderForm ? <NameForm FormUnmount={this.handleFormUnmount} /> : null}</div>
                     <div className="Chapter">
-                        {renderChapter ? (
+                        {renderChapter && chapterIndex < Object.keys(data.chapters).length +1 ? (
                             <Chapter
-                                chapnum={'Chapitre 1 : ' + data.chapters.chapter1.title}
-                                sections={data.sections}
-                                ChapterUnmount={this.handleChapterUnmount}
+                                chapnum={chapterIndex}
+                                data = {data}
+                                unmountChapter={this.handleChapterUnmount}
                             />
                         ) : null}
                     </div>
