@@ -1,33 +1,38 @@
 import React from 'react';
 
 class NameForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { renderChapter: true };
-    }
+    state = { username: '' };
+
     dismiss() {
-        const { unmountForm } = this.props;
-        unmountForm();
+        const { FormUnmount } = this.props;
+        FormUnmount();
     }
 
     handleChange = ({ target }) => {
-        this.setState({ value: target.value });
+        this.setState({ username: target.value });
     };
+
     handleSubmit = event => {
-        const { value } = this.state;
+        const { username } = this.state;
         event.preventDefault();
-        localStorage.setItem('UserName', value);
+        localStorage.setItem('UserName', username);
         this.dismiss();
     };
 
     render() {
-        const { value } = this.state;
+        const { username } = this.state;
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         User :
-                        <input type="text" color={'yellow'} placeholder={'Enter a name'} onChange={this.handleChange} />
+                        <input
+                            type="text"
+                            color={'yellow'}
+                            value={username}
+                            onChange={this.handleChange}
+                            placeholder="Enter a username"
+                        />
                     </label>
                     <br />
                     <input type="submit" value="Valider" align="center" />

@@ -3,29 +3,50 @@ import './Section.css';
 import { GradeDisplay } from './GradeDisplay';
 
 class Section extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: props.data,
-            sectionIndex: props.sectionIndex
-        };
+    DisplayTitle() {
+        const { chapterIndex, sectionIndex, data } = this.props;
+        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
+
+        return <h1>{data.sections[sect].title}</h1>;
     }
-    DisplayParts() {
-        const { sectionIndex, data } = this.state;
-        return (
-            <div>
-                {Object.values(data.sections)[sectionIndex].notions.map((value, index) => (
-                    <h4 key={index}>
-                        {' '}
-                        {value} : {Object.values(data.Notions[value])}{' '}
-                    </h4>
-                ))}
-            </div>
-        );
+    DisplayNotions() {
+        const { chapterIndex, sectionIndex, data } = this.props;
+        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
+
+        if (data.sections[sect].notions !== undefined) {
+            return (
+                <div>
+                    {data.sections[sect].notions.map((value, index) => (
+                        <h4 key={index}>
+                            {' '}
+                            {value} : {Object.values(data.Notions[value])}{' '}
+                        </h4>
+                    ))}
+                </div>
+            );
+        } else return;
     }
+    DisplayQuestions() {
+        const { chapterIndex, sectionIndex, data } = this.props;
+        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
+
+        if (data.sections[sect].questions !== undefined) {
+            return (
+                <div>
+                    {data.sections[sect].questions.map((value, index) => (
+                        <h4 key={index}>
+                            {' '}
+                            {value} : {Object.values(data.questions[value])}{' '}
+                        </h4>
+                    ))}
+                </div>
+            );
+        } else return;
+    }
+
     dismiss() {
-        const { unmountSection } = this.props;
-        unmountSection();
+        const { SectionUnmount } = this.props;
+        SectionUnmount();
     }
 
     nextSection = () => {
@@ -33,21 +54,20 @@ class Section extends React.Component {
     };
 
     handleChange = e => {
-        const { sectionIndex } = this.state;
-        const sectionId = 'section' + sectionIndex;
-        console.log('sectionId: ' + sectionId);
+        const { sectionIndex } = this.props;
+        const sectionId = 'section' + (sectionIndex + 1);
         const grade = e.target.value;
         localStorage.setItem(sectionId, grade);
         this.nextSection();
     };
 
     render() {
-        const { sectionIndex, data } = this.state;
         return (
             <div>
                 <h3>{localStorage.getItem('UserName')}</h3>
-                <h1>{Object.values(data.sections)[sectionIndex].title}</h1>
-                <div>{this.DisplayParts()}</div>
+                <div>{this.DisplayTitle()}</div>
+                <div>{this.DisplayNotions()}</div>
+                <div>{this.DisplayQuestions()}</div>
                 <GradeDisplay handleChange={this.handleChange} />
             </div>
         );

@@ -1,34 +1,47 @@
 import React from 'react';
 
 class Resume extends React.Component {
+    state = { appreciation: '' };
 
-    constructor(props) {
-        super(props);
-        this.state = {chapnum: props.chapnum, moyenne : props.moyenne}
-    }
     dismiss() {
-        const {unmountResume} = this.props;
-        unmountResume();
+        const { ResumeUnmount } = this.props;
+        ResumeUnmount();
     }
-    handleSubmit = (e) =>{
-        e.preventDefault();
+    handleChange = ({ target }) => {
+        this.setState({ appreciation: target.value });
+    };
+
+    handleSubmit = event => {
+        const { chapnum, appreciation } = this.props;
+        const appreciationId = 'Appreciation' + chapnum;
+        localStorage.setItem(appreciationId, appreciation);
+        event.preventDefault();
         this.dismiss();
-    }
+    };
+
     render() {
+        const { appreciation } = this.state;
         return (
-            <form className = "Form" onSubmit={this.handleSubmit}>
-            <div >
-            <h1> Résumé {this.state.chapnum}</h1>
-        <div>
-        Résultat {this.state.chapnum} : {this.state.moyenne} / 5
-        </div>
-        </div>
-        <button onClick={this.handleSubmit} type="submit" value="Démarrez" align="center">Suivant</button>;
+            <form className="Form" onSubmit={this.handleSubmit}>
+                <div>
+                    <h1> Résumé Chapitre {this.props.chapnum}</h1>
+                    <div>
+                        Moyenne du Chapitre {this.props.chapnum} : {this.props.moyenne}
+                    </div>
+                </div>
+                <label>
+                    Appreciation :
+                    <input
+                        type="text"
+                        color={'green'}
+                        value={appreciation}
+                        onChange={this.handleChange}
+                        placeholder="Appreciation"
+                    />
+                </label>
+                <input type="submit" value="Suivant" align="center" />
             </form>
-
-    )
+        );
     }
-
-
 }
 export default Resume;
