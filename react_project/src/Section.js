@@ -47,6 +47,7 @@ class Section extends React.Component {
     }
 
 
+
     dismiss() {
         const { SectionUnmount } = this.props;
         SectionUnmount();

@@ -1,6 +1,10 @@
 import React from 'react';
 
 class Chapter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { chapnum: props.chapnum, sections: props.sections };
+    }
     dismiss() {
         const { unmountChapter } = this.props;
         unmountChapter();
@@ -9,6 +13,13 @@ class Chapter extends React.Component {
         this.dismiss();
     };
 
+    DisplayList() {
+        let arr = new Array();
+        const { chapnum, data } = this.props;
+        let section = data.chapters['chapter' + chapnum].sections;
+        for (let val of section) {
+            arr.push(data.sections[val].title);
+        }
     DisplayList() {
         const { chapnum, data } = this.props;
         const section = data.chapters['chapter' + chapnum].sections;

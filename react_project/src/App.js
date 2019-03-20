@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+//import logo from './logo.svg';
 import logo from './Images/Viseo.png';
 import './App.css';
 import NameForm from './NameForm.js';
