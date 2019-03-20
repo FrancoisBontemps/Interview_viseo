@@ -1,22 +1,29 @@
 import React from 'react';
+import * as firebase from 'firebase';
+
+export const userName = { name: '' };
 
 class NameForm extends React.Component {
     state = { username: '' };
-
-    dismiss() {
-        const { FormUnmount } = this.props;
-        FormUnmount();
-    }
 
     handleChange = ({ target }) => {
         this.setState({ username: target.value });
     };
 
-    handleSubmit = event => {
+    handleSubmit = () => {
         const { username } = this.state;
-        event.preventDefault();
         localStorage.setItem('UserName', username);
-        this.dismiss();
+        userName.name = username;
+        console.log(userName.name);
+        firebase
+            .database()
+            .ref('student/' + username)
+            .update({
+                name: username
+            });
+
+        const { FormUnmount } = this.props;
+        FormUnmount();
     };
 
     render() {

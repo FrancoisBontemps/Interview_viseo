@@ -9,7 +9,27 @@ import Resume from './Resume';
 import ResumeAllChapter from './ResumeAllChap';
 
 const data = require('./Interview');
+var firebase = require('firebase');
+var config = {
+    apiKey: 'AIzaSyB8ykXmTGGQIq7uWZCupWH6ZAP_PGgMwCA',
+    authDomain: 'interview-viseo.firebaseapp.com',
+    databaseURL: 'https://interview-viseo.firebaseio.com',
+    projectId: 'interview-viseo',
+    storageBucket: 'interview-viseo.appspot.com',
+    messagingSenderId: '233151678963'
+};
+firebase.initializeApp(config);
 
+let database = firebase.database();
+
+function writeUserData(userName) {
+    firebase
+        .database()
+        .ref('student/' + userName)
+        .set({
+            username: userName
+        });
+}
 class App extends React.Component {
     state = {
         renderForm: true,
@@ -113,6 +133,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <header className="NameForm">
+                    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js" />
                     <img src={logo} className="App-logo" />
                     <div className="Form">{renderForm ? <NameForm FormUnmount={this.handleFormUnmount} /> : null}</div>
                     <div className="Chapter">

@@ -12,7 +12,8 @@ class Resume extends React.Component {
     };
 
     handleSubmit = event => {
-        const { chapnum, appreciation } = this.props;
+        const { chapnum } = this.props;
+        const { appreciation } = this.state;
         const appreciationId = 'Appreciation' + chapnum;
         localStorage.setItem(appreciationId, appreciation);
         event.preventDefault();
