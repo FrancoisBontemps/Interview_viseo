@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 import { userName } from './NameForm';
 
 class Resume extends React.Component {
-    state = { appreciation: '' };
+    state = { appreciation: '', moy: 0 };
 
     handleChange = ({ target }) => {
         this.setState({ appreciation: target.value });
@@ -27,29 +27,42 @@ class Resume extends React.Component {
         ResumeUnmount();
     };
 
+    displayNote = tabNote => {
+        let moyenne = 0;
+        if (tabNote !== undefined && tabNote !== null) {
+            for (let note in tabNote) {
+                moyenne += parseInt(tabNote[note]);
+            }
+            this.setState({ moy: moyenne / Object.keys(tabNote).length });
+        }
+    };
+
     moyenneCalc = () => {
         const { chapnum } = this.props;
+        let tabNotes = {};
         firebase
             .database()
-            .ref('student/' + userName.name + 'chapter/' + chapnum)
+            .ref('student/' + userName.name + '/' + 'chapter/' + chapnum)
             .on(
                 'value',
-                function(snapshot) {
+                snapshot => {
                     if (snapshot.val() != null) {
-                        console.log(snapshot.val());
+                        tabNotes = snapshot.val();
+                        this.displayNote(tabNotes);
                     }
                 },
                 function(errorObject) {
                     console.log('The read failed: ' + errorObject.code);
                 }
             );
-
-        //TEST FIREBASE
-        console.log(firebase.database().ref('student/' + userName.name + 'chapter/' + chapnum));
     };
 
+    componentDidMount() {
+        this.moyenneCalc();
+    }
+
     render() {
-        const { appreciation } = this.state;
+        const { appreciation, moy } = this.state;
         const { chapnum, name } = this.props;
         return (
             <form className="Form" onSubmit={this.handleSubmit}>
@@ -59,7 +72,7 @@ class Resume extends React.Component {
                         Résumé Chapitre {chapnum} pour {name}
                     </h1>
                     <div>
-                        Moyenne du Chapitre {chapnum} : {this.moyenneCalc()}
+                        Moyenne du Chapitre {chapnum} : {moy}
                     </div>
                 </div>
                 <label>
