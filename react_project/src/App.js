@@ -73,8 +73,7 @@ class App extends React.Component {
                 appreciation: []
             }
         );
-
-    };
+    }
     createSection(data) {
         const { sectionIndex, chapterIndex, userName } = this.state;
         return (
@@ -104,7 +103,9 @@ class App extends React.Component {
             appreciations,
             userName
         } = this.state;
-     return (
+
+
+        return (
             <div className="App">
                 <p> {note[chapterIndex - 1]}</p>
                 <header className="NameForm">
