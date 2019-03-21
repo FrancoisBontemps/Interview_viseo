@@ -141,7 +141,7 @@ class App extends React.Component {
                     </div>
                     <div className="ResumeAllChapter">
                         {renderResumeAllChapter ? (
-                            <ResumeAllChapter tabNote={note} tabAppreciation={appreciations} />
+                            <ResumeAllChapter />
                         ) : null}
                     </div>
                 </header>

@@ -39,7 +39,6 @@ class Resume extends React.Component {
 
     moyenneCalc = () => {
         const { chapnum } = this.props;
-        let tabNotes = {};
         firebase
             .database()
             .ref('student/' + userName.name + '/' + 'chapter/' + chapnum)
@@ -47,8 +46,7 @@ class Resume extends React.Component {
                 'value',
                 snapshot => {
                     if (snapshot.val() != null) {
-                        tabNotes = snapshot.val();
-                        this.displayNote(tabNotes);
+                        this.displayNote(snapshot.val());
                     }
                 },
                 function(errorObject) {
