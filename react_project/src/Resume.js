@@ -15,12 +15,12 @@ class Resume extends React.Component {
     handleSubmit = event => {
         const { chapnum, username, moyenne } = this.props;
         const { appreciation } = this.state;
-        const obj = {};
-        const str = 'chapter' + chapnum.toString();
-        obj[str] = moyenne;
+        const str = 'moyenne chapter' + chapnum.toString();
+        const obj = {[str]: moyenne}
+
         firebase
             .database()
-            .ref('student/' + username)
+            .ref('student/' + username + "/chapter" + chapnum.toString())
             .update(obj);
         const appreciationId = 'Appreciation' + chapnum;
         localStorage.setItem(appreciationId, appreciation);

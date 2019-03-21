@@ -5,14 +5,14 @@ import * as firebase from 'firebase';
 
 class Section extends React.Component {
     DisplayTitle() {
-        const { chapterIndex, sectionIndex, data } = this.props;
-        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
+        const { chapnum, sectionIndex, data } = this.props;
+        const sect = data.chapters['chapter' + chapnum].sections[sectionIndex];
 
         return <h1>{data.sections[sect].title}</h1>;
     }
     DisplayNotions() {
-        const { chapterIndex, sectionIndex, data } = this.props;
-        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
+        const { chapnum, sectionIndex, data } = this.props;
+        const sect = data.chapters['chapter' + chapnum].sections[sectionIndex];
 
         if (data.sections[sect].notions !== undefined) {
             return (
@@ -28,8 +28,8 @@ class Section extends React.Component {
         } else return;
     }
     DisplayQuestions() {
-        const { chapterIndex, sectionIndex, data } = this.props;
-        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
+        const { chapnum, sectionIndex, data } = this.props;
+        const sect = data.chapters['chapter' + chapnum].sections[sectionIndex];
 
         if (data.sections[sect].questions !== undefined) {
             return (
@@ -45,18 +45,8 @@ class Section extends React.Component {
         } else return;
     }
 
-    dismiss() {
-        const { SectionUnmount } = this.props;
-        SectionUnmount();
-    }
-
-    nextSection = () => {
-        this.dismiss();
-    };
-
     handleChange = e => {
         const { username, sectionIndex, chapnum } = this.props;
-        console.log(username);
         const sectionId = 'section' + (sectionIndex + 1);
         const grade = e.target.value;
         const obj = {};
