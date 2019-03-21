@@ -1,5 +1,8 @@
-import React, { createContext } from 'react';
+import React from 'react';
 
+export const UserContext = createContext({
+    username: ''
+});
 class NameForm extends React.Component {
     state = { username: '' };
 
@@ -14,6 +17,8 @@ class NameForm extends React.Component {
 
     handleSubmit = event => {
         const { username } = this.state;
+        const { setUsername } = this.props;
+        setUsername(username);
         event.preventDefault();
         localStorage.setItem('UserName', username);
         this.dismiss();
@@ -22,6 +27,7 @@ class NameForm extends React.Component {
     render() {
         const { username } = this.state;
         return (
+
                 <div>
                     <form onSubmit={this.handleSubmit}>
                         <label>
@@ -38,6 +44,7 @@ class NameForm extends React.Component {
                         <input type="submit" value="Valider" align="center" />
                     </form>
                 </div>
+            </UserContext.Provider>
         );
     }
 }

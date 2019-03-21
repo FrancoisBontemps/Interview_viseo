@@ -7,25 +7,27 @@ import Chapter from './Chapter';
 import Section from './Section';
 import Resume from './Resume';
 import ResumeAllChapter from './ResumeAllChap';
+import { firebase, config } from './Firebase_config';
+firebase.initializeApp(config);
 
 const data = require('./Interview');
-const initialState = {
-    renderForm: true,
-    renderChapter: false,
-    renderSection: false,
-    renderNextSection: false,
-    renderResume: false,
-    renderResumeAllChapter: false,
-    chapterIndex: 1,
-    sectionIndex: 0,
-    note: [],
-    appreciations: []
-};
 
-let obj_chapter = {};
+let objChapter = {};
 
 class App extends React.Component {
-    state = initialState;
+    state = {
+        renderForm: true,
+        renderChapter: false,
+        renderSection: false,
+        renderNextSection: false,
+        renderResume: false,
+        renderResumeAllChapter: false,
+        chapterIndex: 1,
+        sectionIndex: 0,
+        note: [],
+        appreciations: [],
+        userName: ''
+    };
 
     handleFormUnmount = () => {
         this.setState({ renderForm: false, renderChapter: true, renderResume: false });
@@ -44,9 +46,9 @@ class App extends React.Component {
         });
     };
 
-    handleUserNameChanged = userName => {
+    handleUserNameChanged = username => {
         this.setState({
-            username: userName
+            userName: username
         });
     };
 
@@ -69,27 +71,27 @@ class App extends React.Component {
     handleResumeAllChapterUnmount = () => {
         this.setState(initialState);
         this.setState({
-                note : [],
-                appreciation : []
+                note: [],
+                appreciation: []
             }
-            );
+        );
 
     };
-
     createSection(data) {
-        const { sectionIndex, chapterIndex } = this.state;
+        const { sectionIndex, chapterIndex, userName } = this.state;
         return (
             <div>
                 <Section
                     data={data}
                     sectionIndex={sectionIndex}
-                    chapterIndex={chapterIndex}
                     SectionUnmount={this.handleSectionUnmount}
-                    username={this.state.username}
+                    username={userName}
+                    chapnum={chapterIndex}
                 />
             </div>
         );
     }
+
     render() {
         const {
             renderForm,
@@ -101,35 +103,27 @@ class App extends React.Component {
             renderResumeAllChapter,
             chapterIndex,
             note,
-            appreciations
+            appreciations,
+            userName
         } = this.state;
-        if (chapterIndex < Object.keys(data.chapters).length + 1) {
-            let numNote = [];
-            for (let i = 1; i <= data.chapters['chapter' + chapterIndex].sections.length; i++) {
-                numNote.push(localStorage.getItem('section' + i));
-            }
-            let moy = numNote.reduce(function(acc, val) {
-                return acc + parseInt(val);
-            }, 0);
-            if (numNote.length === 0) {
-                moy = 0;
-            } else {
-                moy = moy / numNote.length;
-            }
-            if (data.chapters['chapter' + chapterIndex].sections.length === sectionIndex) {
-                note.push(moy);
-            }
-        }
         return (
             <div className="App">
+                <p> {note[chapterIndex - 1]}</p>
                 <header className="NameForm">
                     <img src={logo} className="App-logo" />
-                    <div className="Form">{renderForm ? <NameForm FormUnmount={this.handleFormUnmount} /> : null}</div>
+                    <div className="Form">
+                        {renderForm ? (
+                            <NameForm FormUnmount={this.handleFormUnmount} setUsername={this.handleUserNameChanged} />
+                        ) : null}
+                    </div>
                     <div className="Chapter">
                         {renderChapter && chapterIndex < Object.keys(data.chapters).length + 1 ? (
-                            <Chapter chapnum={chapterIndex}
-                                     data={data}
-                                     unmountChapter={this.handleChapterUnmount} />
+                            <Chapter
+                                chapnum={chapterIndex}
+                                data={data}
+                                unmountChapter={this.handleChapterUnmount}
+                                username={userName}
+                            />
                         ) : null}
                     </div>
                     <div className="Section">
@@ -148,6 +142,7 @@ class App extends React.Component {
                                 chapnum={chapterIndex}
                                 ResumeUnmount={this.handleResumeUnmount}
                                 moyenne={note[chapterIndex - 1]}
+                                username={userName}
                             />
                         ) : null}
                     </div>

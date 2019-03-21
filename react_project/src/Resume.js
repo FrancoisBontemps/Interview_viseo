@@ -1,4 +1,5 @@
 import React from 'react';
+import * as firebase from 'firebase';
 
 class Resume extends React.Component {
     state = { appreciation: '' };
@@ -12,7 +13,7 @@ class Resume extends React.Component {
     };
 
     handleSubmit = event => {
-        const { chapnum, username, moyenne } = this.props;
+        const { chapnum} = this.props;
         const { appreciation } = this.state;
         const appreciationId = 'Appreciation' + chapnum;
         localStorage.setItem(appreciationId, appreciation);
