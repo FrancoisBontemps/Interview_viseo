@@ -1,8 +1,5 @@
-import React, { createContext, Component } from 'react'; // on importe createContext qui servira à la création d'un ou plusieurs contextes
+import React, { createContext } from 'react';
 
-export const UserContext = createContext({
-    username: ''
-});
 class NameForm extends React.Component {
     state = { username: '' };
 
@@ -17,8 +14,6 @@ class NameForm extends React.Component {
 
     handleSubmit = event => {
         const { username } = this.state;
-        const { setUsername } = this.props;
-        setUsername(username);
         event.preventDefault();
         localStorage.setItem('UserName', username);
         this.dismiss();
@@ -27,8 +22,6 @@ class NameForm extends React.Component {
     render() {
         const { username } = this.state;
         return (
-            <UserContext.Provider value={this.state}>
-                {this.props.children}
                 <div>
                     <form onSubmit={this.handleSubmit}>
                         <label>
@@ -45,7 +38,6 @@ class NameForm extends React.Component {
                         <input type="submit" value="Valider" align="center" />
                     </form>
                 </div>
-            </UserContext.Provider>
         );
     }
 }
