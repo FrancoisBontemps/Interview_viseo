@@ -10,12 +10,9 @@ class Chapter extends React.Component {
     };
 
     DisplayList() {
-        let arr = [];
         const { chapnum, data } = this.props;
-        let section = data.chapters['chapter' + chapnum].sections;
-        for (let val of section) {
-            arr.push(data.sections[val].title);
-        }
+        const section = data.chapters['chapter' + chapnum].sections;
+        const arr = section.map(val =>{return data.sections[val].title});
         return (
             <div>
                 {arr.map((value, index) => (

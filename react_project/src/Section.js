@@ -9,12 +9,13 @@ class Section extends React.Component {
 
         return <h1>{data.sections[sect].title}</h1>;
     }
-    DisplayNotions() {
-        const { chapterIndex, sectionIndex, data } = this.props;
+    DisplayText() {
+        const {chapterIndex, sectionIndex, data} = this.props;
         const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
-
-        if (data.sections[sect].notions !== undefined) {
-            return (
+        const section = data.sections[sect];
+        const text = {};
+        if (section.notions !== undefined) {
+            text.notion =
                 <div>
                     {data.sections[sect].notions.map((value, index) => (
                         <h4 key={index}>
@@ -23,15 +24,10 @@ class Section extends React.Component {
                         </h4>
                     ))}
                 </div>
-            );
-        } else return;
-    }
-    DisplayQuestions() {
-        const { chapterIndex, sectionIndex, data } = this.props;
-        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
-
-        if (data.sections[sect].questions !== undefined) {
-            return (
+            ;
+        }
+        if (section.questions !== undefined) {
+            text.question =
                 <div>
                     {data.sections[sect].questions.map((value, index) => (
                         <h4 key={index}>
@@ -40,9 +36,16 @@ class Section extends React.Component {
                         </h4>
                     ))}
                 </div>
-            );
-        } else return;
+            ;
+        }
+        return (
+            <div>
+                {text.notion}
+                {text.question}
+            </div>
+        );
     }
+
 
     dismiss() {
         const { SectionUnmount } = this.props;
@@ -66,8 +69,7 @@ class Section extends React.Component {
             <div>
                 <h3>{localStorage.getItem('UserName')}</h3>
                 <div>{this.DisplayTitle()}</div>
-                <div>{this.DisplayNotions()}</div>
-                <div>{this.DisplayQuestions()}</div>
+                <div>{this.DisplayText()}</div>
                 <GradeDisplay handleChange={this.handleChange} />
             </div>
         );

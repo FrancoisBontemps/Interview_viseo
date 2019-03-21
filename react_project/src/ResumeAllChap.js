@@ -10,7 +10,6 @@ class ResumeAllChapter extends React.Component {
     };
     display() {
         const { tabNote, tabAppreciation } = this.props;
-        console.log(tabAppreciation);
         return (
             <div>
                 <div>
