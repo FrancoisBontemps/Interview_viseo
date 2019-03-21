@@ -10,22 +10,20 @@ class Resume extends React.Component {
     };
 
     handleSubmit = event => {
-        const { chapnum } = this.props;
+        const { chapnum, ResumeUnmount } = this.props;
         const { appreciation } = this.state;
         const appreciationId = 'Appreciation' + chapnum;
 
         localStorage.setItem(appreciationId, appreciation);
 
-        let appreciationObj = {};
-        appreciationObj[appreciationId.toString()] = appreciation;
+        let appreciationObj = { [appreciationId.toString()]: appreciation };
 
         firebase
             .database()
             .ref('student/' + userName.name)
             .child('chapter/' + chapnum)
             .update(appreciationObj);
-        event.preventDefault();
-        const { ResumeUnmount } = this.props;
+
         ResumeUnmount();
     };
 
@@ -47,28 +45,21 @@ class Resume extends React.Component {
             );
 
         //TEST FIREBASE
-        /*        console.log(
-            firebase
-                .database()
-                .ref('student/' + userName.name + 'chapter/' + chapnum)
-                .once('value')
-                .then(function(snapshot) {
-                    var note = snapshot.val().section1;
-                })
-        );*/
+        console.log(firebase.database().ref('student/' + userName.name + 'chapter/' + chapnum));
     };
 
     render() {
         const { appreciation } = this.state;
+        const { chapnum, name } = this.props;
         return (
             <form className="Form" onSubmit={this.handleSubmit}>
                 <div>
                     <h1>
                         {' '}
-                        Résumé Chapitre {this.props.chapnum} pour {this.props.name}
+                        Résumé Chapitre {chapnum} pour {name}
                     </h1>
                     <div>
-                        Moyenne du Chapitre {this.props.chapnum} : {this.moyenneCalc()}
+                        Moyenne du Chapitre {chapnum} : {this.moyenneCalc()}
                     </div>
                 </div>
                 <label>

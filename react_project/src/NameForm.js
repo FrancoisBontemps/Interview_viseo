@@ -12,6 +12,7 @@ class NameForm extends React.Component {
 
     handleSubmit = () => {
         const { username } = this.state;
+        const { FormUnmount } = this.props;
         localStorage.setItem('UserName', username);
         userName.name = username;
         firebase
@@ -21,7 +22,6 @@ class NameForm extends React.Component {
                 name: username
             });
 
-        const { FormUnmount } = this.props;
         FormUnmount();
     };
 

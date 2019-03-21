@@ -47,21 +47,19 @@ class Section extends React.Component {
     }
 
     handleChange = e => {
-        const { sectionIndex, chapterIndex } = this.props;
+        const { sectionIndex, chapterIndex, SectionUnmount } = this.props;
         const sectionId = 'section' + (sectionIndex + 1);
         const grade = e.target.value;
-        const obj = {};
+        const noteObj = { [sectionId.toString()]: grade };
 
-        obj[sectionId.toString()] = grade;
         localStorage.setItem(sectionId, grade);
 
         firebase
             .database()
             .ref('student/' + userName.name)
             .child('chapter/' + chapterIndex)
-            .update(obj);
+            .update(noteObj);
 
-        const { SectionUnmount } = this.props;
         SectionUnmount();
     };
 

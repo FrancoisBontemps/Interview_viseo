@@ -8,29 +8,8 @@ import Section from './Section';
 import Resume from './Resume';
 import ResumeAllChapter from './ResumeAllChap';
 import { userName } from './NameForm';
+import { firebase, data } from './config';
 
-const data = require('./Interview');
-var firebase = require('firebase');
-var config = {
-    apiKey: 'AIzaSyB8ykXmTGGQIq7uWZCupWH6ZAP_PGgMwCA',
-    authDomain: 'interview-viseo.firebaseapp.com',
-    databaseURL: 'https://interview-viseo.firebaseio.com',
-    projectId: 'interview-viseo',
-    storageBucket: 'interview-viseo.appspot.com',
-    messagingSenderId: '233151678963'
-};
-firebase.initializeApp(config);
-
-let database = firebase.database();
-
-function writeUserData(userName) {
-    firebase
-        .database()
-        .ref('student/' + userName)
-        .set({
-            username: userName
-        });
-}
 class App extends React.Component {
     state = {
         renderForm: true,
