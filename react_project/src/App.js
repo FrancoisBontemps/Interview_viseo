@@ -7,8 +7,12 @@ import Chapter from './Chapter';
 import Section from './Section';
 import Resume from './Resume';
 import ResumeAllChapter from './ResumeAllChap';
+import { firebase, config } from './Firebase_config';
+firebase.initializeApp(config);
 
 const data = require('./Interview');
+
+let objChapter = {};
 
 class App extends React.Component {
     state = {
@@ -21,8 +25,10 @@ class App extends React.Component {
         chapterIndex: 1,
         sectionIndex: 0,
         note: [],
-        appreciations: []
+        appreciations: [],
+        userName: ''
     };
+
     handleFormUnmount = () => {
         this.setState({ renderForm: false, renderChapter: true, renderResume: false });
     };
@@ -41,6 +47,12 @@ class App extends React.Component {
                 renderResume: true
             });
         }
+    };
+
+    handleUserNameChanged = username => {
+        this.setState({
+            userName: username
+        });
     };
 
     handleResumeUnmount = () => {
@@ -66,18 +78,44 @@ class App extends React.Component {
         }
     };
     createSection(data) {
-        const { sectionIndex, chapterIndex } = this.state;
+        const { sectionIndex, chapterIndex, userName } = this.state;
         return (
             <div>
                 <Section
                     data={data}
                     sectionIndex={sectionIndex}
-                    chapterIndex={chapterIndex}
                     SectionUnmount={this.handleSectionUnmount}
+                    username={userName}
+                    chapnum={chapterIndex}
                 />
             </div>
         );
     }
+
+    gotData = donnes => {
+        const { sectionIndex, chapterIndex, note, userName } = this.state;
+        const nbSections = data.chapters['chapter' + chapterIndex].sections.length;
+        if (userName && nbSections === sectionIndex) {
+            objChapter = donnes.val();
+            console.log(objChapter);
+            const numNote = Object.keys(data.chapters['chapter' + chapterIndex].sections).reduce((acc, curr, index) => {
+                console.log(objChapter['section' + (index + 1)]);
+                return [...acc, objChapter['section' + (index + 1)]];
+            }, []);
+
+            const moy =
+                numNote.length === 0 ? 0 : numNote.reduce((acc, curr) => acc + parseInt(curr), 0) / numNote.length;
+            if (chapterIndex < Object.keys(data.chapters).length + 1) {
+                if (data.chapters['chapter' + chapterIndex].sections.length === sectionIndex) {
+                    if (!isNaN(moy)) note.push(moy);
+                }
+            }
+        }
+    };
+
+    errData = err => {
+        console.log(err);
+    };
     render() {
         const {
             renderForm,
@@ -89,35 +127,32 @@ class App extends React.Component {
             renderResumeAllChapter,
             chapterIndex,
             note,
-            appreciations
+            appreciations,
+            userName
         } = this.state;
-        let numNote = new Array();
-        for (let i = 1; i <= data.chapters['chapter' + chapterIndex].sections.length; i++) {
-            numNote.push(localStorage.getItem('section' + i));
-        }
 
-        let moy = numNote.reduce(function(acc, val) {
-            return acc + parseInt(val);
-        }, 0);
-        if (numNote.length === 0) {
-            moy = 0;
-        } else {
-            moy = moy / numNote.length;
-        }
+        const str_db = 'student/' + userName + '/chapter' + chapterIndex.toString();
+        const ref = firebase.database().ref(str_db);
 
-        if (chapterIndex < Object.keys(data.chapters).length + 1) {
-            if (data.chapters['chapter' + chapterIndex].sections.length === sectionIndex) {
-                note.push(moy);
-            }
-        }
+        ref.on('value', this.gotData, this.errData);
         return (
             <div className="App">
+                <p> {note[chapterIndex - 1]}</p>
                 <header className="NameForm">
                     <img src={logo} className="App-logo" />
-                    <div className="Form">{renderForm ? <NameForm FormUnmount={this.handleFormUnmount} /> : null}</div>
+                    <div className="Form">
+                        {renderForm ? (
+                            <NameForm FormUnmount={this.handleFormUnmount} setUsername={this.handleUserNameChanged} />
+                        ) : null}
+                    </div>
                     <div className="Chapter">
                         {renderChapter && chapterIndex < Object.keys(data.chapters).length + 1 ? (
-                            <Chapter chapnum={chapterIndex} data={data} unmountChapter={this.handleChapterUnmount} />
+                            <Chapter
+                                chapnum={chapterIndex}
+                                data={data}
+                                unmountChapter={this.handleChapterUnmount}
+                                username={userName}
+                            />
                         ) : null}
                     </div>
                     <div className="Section">
@@ -136,8 +171,10 @@ class App extends React.Component {
                                 chapnum={chapterIndex}
                                 ResumeUnmount={this.handleResumeUnmount}
                                 moyenne={note[chapterIndex - 1]}
+                                username={userName}
                             />
                         ) : null}
+                        {renderResume ? <p> {note} </p> : null}
                     </div>
                     <div className="ResumeAllChapter">
                         {renderResumeAllChapter ? (
