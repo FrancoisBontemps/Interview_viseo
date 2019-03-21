@@ -1,0 +1,460 @@
+warning: LF will be replaced by CRLF in react_project/src/App.js.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in react_project/src/Chapter.js.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in react_project/src/NameForm.js.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in react_project/src/Resume.js.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in react_project/src/ResumeAllChap.js.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in react_project/src/Section.js.
+The file will have its original line endings in your working directory
+[1mdiff --git a/react_project/src/.idea/workspace.xml b/react_project/src/.idea/workspace.xml[m
+[1mindex 0714ca9..ef6f685 100644[m
+[1m--- a/react_project/src/.idea/workspace.xml[m
+[1m+++ b/react_project/src/.idea/workspace.xml[m
+[36m@@ -2,12 +2,10 @@[m
+ <project version="4">[m
+   <component name="ChangeListManager">[m
+     <list default="true" id="cd6b0d9a-87c4-4d45-8901-66d5431af53d" name="Default Changelist" comment="">[m
+[31m-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" />[m
+[32m+[m[32m      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />[m
+       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />[m
+       <change beforePath="$PROJECT_DIR$/Chapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/Chapter.js" afterDir="false" />[m
+[31m-      <change beforePath="$PROJECT_DIR$/ResumeAllChap.js" beforeDir="false" afterPath="$PROJECT_DIR$/ResumeAllChap.js" afterDir="false" />[m
+[32m+[m[32m      <change beforePath="$PROJECT_DIR$/Resume.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resume.js" afterDir="false" />[m
+       <change beforePath="$PROJECT_DIR$/Section.js" beforeDir="false" afterPath="$PROJECT_DIR$/Section.js" afterDir="false" />[m
+     </list>[m
+     <ignored path="$PROJECT_DIR$/.tmp/" />[m
+[36m@@ -21,20 +19,23 @@[m
+   </component>[m
+   <component name="FileEditorManager">[m
+     <leaf>[m
+[31m-      <file pinned="false" current-in-tab="true">[m
+[32m+[m[32m      <file pinned="false" current-in-tab="false">[m
+         <entry file="file://$PROJECT_DIR$/App.js">[m
+           <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="221">[m
+[31m-              <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />[m
+[32m+[m[32m            <state relative-caret-position="391">[m
+[32m+[m[32m              <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />[m
+[32m+[m[32m              <folding>[m
+[32m+[m[32m                <element signature="e#75#113#0" expanded="true" />[m
+[32m+[m[32m              </folding>[m
+             </state>[m
+           </provider>[m
+         </entry>[m
+       </file>[m
+[31m-      <file pinned="false" current-in-tab="false">[m
+[32m+[m[32m      <file pinned="false" current-in-tab="true">[m
+         <entry file="file://$PROJECT_DIR$/Chapter.js">[m
+           <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="255">[m
+[31m-              <caret line="15" selection-start-line="15" selection-end-line="15" />[m
+[32m+[m[32m            <state relative-caret-position="221">[m
+[32m+[m[32m              <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />[m
+             </state>[m
+           </provider>[m
+         </entry>[m
+[36m@@ -48,11 +49,20 @@[m
+           </provider>[m
+         </entry>[m
+       </file>[m
+[32m+[m[32m      <file pinned="false" current-in-tab="false">[m
+[32m+[m[32m        <entry file="file://$PROJECT_DIR$/Resume.js">[m
+[32m+[m[32m          <provider selected="true" editor-type-id="text-editor">[m
+[32m+[m[32m            <state relative-caret-position="255">[m
+[32m+[m[32m              <caret line="15" selection-start-line="15" selection-end-line="15" />[m
+[32m+[m[32m            </state>[m
+[32m+[m[32m          </provider>[m
+[32m+[m[32m        </entry>[m
+[32m+[m[32m      </file>[m
+       <file pinned="false" current-in-tab="false">[m
+         <entry file="file://$PROJECT_DIR$/Section.js">[m
+           <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="697">[m
+[31m-              <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />[m
+[32m+[m[32m            <state relative-caret-position="255">[m
+[32m+[m[32m              <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />[m
+               <folding>[m
+                 <element signature="e#0#26#0" expanded="true" />[m
+               </folding>[m
+[36m@@ -78,9 +88,12 @@[m
+     <option name="CHANGED_PATHS">[m
+       <list>[m
+         <option value="$PROJECT_DIR$/ResumeAllChap.js" />[m
+[32m+[m[32m        <option value="$PROJECT_DIR$/../../.gitignore" />[m
+[32m+[m[32m        <option value="$PROJECT_DIR$/../.gitignore" />[m
+         <option value="$PROJECT_DIR$/Chapter.js" />[m
+[31m-        <option value="$PROJECT_DIR$/Section.js" />[m
+         <option value="$PROJECT_DIR$/App.js" />[m
+[32m+[m[32m        <option value="$PROJECT_DIR$/Section.js" />[m
+[32m+[m[32m        <option value="$PROJECT_DIR$/Resume.js" />[m
+       </list>[m
+     </option>[m
+   </component>[m
+[36m@@ -144,11 +157,10 @@[m
+     <servers />[m
+   </component>[m
+   <component name="TimeTrackingManager">[m
+[31m-    <option name="totallyTimeSpent" value="5199000" />[m
+[32m+[m[32m    <option name="totallyTimeSpent" value="6808000" />[m
+   </component>[m
+   <component name="ToolWindowManager">[m
+     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />[m
+[31m-    <editor active="true" />[m
+     <layout>[m
+       <window_info id="Favorites" side_tool="true" />[m
+       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />[m
+[36m@@ -172,6 +184,9 @@[m
+   <component name="TypeScriptGeneratedFilesManager">[m
+     <option name="version" value="1" />[m
+   </component>[m
+[32m+[m[32m  <component name="VcsManagerConfiguration">[m
+[32m+[m[32m    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />[m
+[32m+[m[32m  </component>[m
+   <component name="editorHistoryManager">[m
+     <entry file="file://$PROJECT_DIR$/Section.css">[m
+       <provider selected="true" editor-type-id="text-editor" />[m
+[36m@@ -183,34 +198,51 @@[m
+         </state>[m
+       </provider>[m
+     </entry>[m
+[31m-    <entry file="file://$PROJECT_DIR$/Section.js">[m
+[32m+[m[32m    <entry file="file://$PROJECT_DIR$/ResumeAllChap.js">[m
+       <provider selected="true" editor-type-id="text-editor">[m
+[31m-        <state relative-caret-position="697">[m
+[31m-          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />[m
+[32m+[m[32m        <state relative-caret-position="204">[m
+[32m+[m[32m          <caret line="12" selection-start-line="12" selection-end-line="12" />[m
+[32m+[m[32m        </state>[m
+[32m+[m[32m      </provider>[m
+[32m+[m[32m    </entry>[m
+[32m+[m[32m    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react.d.ts">[m
+[32m+[m[32m      <provider selected="true" editor-type-id="text-editor">[m
+[32m+[m[32m        <state relative-caret-position="227">[m
+[32m+[m[32m          <caret line="306" column="8" selection-start-line="306" selection-start-column="8" selection-end-line="306" selection-end-column="8" />[m
+[32m+[m[32m        </state>[m
+[32m+[m[32m      </provider>[m
+[32m+[m[32m    </entry>[m
+[32m+[m[32m    <entry file="file://$PROJECT_DIR$/App.js">[m
+[32m+[m[32m      <provider selected="true" editor-type-id="text-editor">[m
+[32m+[m[32m        <state relative-caret-position="391">[m
+[32m+[m[32m          <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />[m
+           <folding>[m
+[31m-            <element signature="e#0#26#0" expanded="true" />[m
+[32m+[m[32m            <element signature="e#75#113#0" expanded="true" />[m
+           </folding>[m
+         </state>[m
+       </provider>[m
+     </entry>[m
+[31m-    <entry file="file://$PROJECT_DIR$/ResumeAllChap.js">[m
+[32m+[m[32m    <entry file="file://$PROJECT_DIR$/Resume.js">[m
+       <provider selected="true" editor-type-id="text-editor">[m
+[31m-        <state relative-caret-position="204">[m
+[31m-          <caret line="12" selection-start-line="12" selection-end-line="12" />[m
+[32m+[m[32m        <state relative-caret-position="255">[m
+[32m+[m[32m          <caret line="15" selection-start-line="15" selection-end-line="15" />[m
+         </state>[m
+       </provider>[m
+     </entry>[m
+[31m-    <entry file="file://$PROJECT_DIR$/Chapter.js">[m
+[32m+[m[32m    <entry file="file://$PROJECT_DIR$/Section.js">[m
+       <provider selected="true" editor-type-id="text-editor">[m
+         <state relative-caret-position="255">[m
+[31m-          <caret line="15" selection-start-line="15" selection-end-line="15" />[m
+[32m+[m[32m          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />[m
+[32m+[m[32m          <folding>[m
+[32m+[m[32m            <element signature="e#0#26#0" expanded="true" />[m
+[32m+[m[32m          </folding>[m
+         </state>[m
+       </provider>[m
+     </entry>[m
+[31m-    <entry file="file://$PROJECT_DIR$/App.js">[m
+[32m+[m[32m    <entry file="file://$PROJECT_DIR$/Chapter.js">[m
+       <provider selected="true" editor-type-id="text-editor">[m
+         <state relative-caret-position="221">[m
+[31m-          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />[m
+[32m+[m[32m          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />[m
+         </state>[m
+       </provider>[m
+     </entry>[m
+[1mdiff --git a/react_project/src/App.js b/react_project/src/App.js[m
+[1mindex 64dc687..327b929 100644[m
+[1m--- a/react_project/src/App.js[m
+[1m+++ b/react_project/src/App.js[m
+[36m@@ -1,5 +1,4 @@[m
+ import React, { Component } from 'react';[m
+[31m-//import logo from './logo.svg';[m
+ import logo from './Images/Viseo.png';[m
+ import './App.css';[m
+ import NameForm from './NameForm.js';[m
+[36m@@ -19,25 +18,10 @@[m [mconst initialState = {[m
+     chapterIndex: 1,[m
+     sectionIndex: 0,[m
+     note: [],[m
+[31m-    appreciations: [],[m
+[31m-    username: ''[m
+[32m+[m[32m    appreciations: [][m
+ };[m
+[31m-var firebase = require('firebase');[m
+[31m-var config = {[m
+[31m-    apiKey: 'AIzaSyDmRPV5SUPIW_oFQj9xweTMHAXLbPA4imU',[m
+[31m-    authDomain: 'viseo-36d12.firebaseapp.com',[m
+[31m-    databaseURL: 'https://viseo-36d12.firebaseio.com',[m
+[31m-    projectId: 'viseo-36d12',[m
+[31m-    storageBucket: 'viseo-36d12.appspot.com',[m
+[31m-    messagingSenderId: '131746919965'[m
+[31m-};[m
+[31m-firebase.initializeApp(config);[m
+[31m-[m
+[31m-let obj_chapter = {};[m
+[31m-[m
+ class App extends React.Component {[m
+     state = initialState;[m
+[31m-[m
+     handleFormUnmount = () => {[m
+         this.setState({ renderForm: false, renderChapter: true, renderResume: false });[m
+     };[m
+[36m@@ -55,12 +39,6 @@[m [mclass App extends React.Component {[m
+         });[m
+     };[m
+ [m
+[31m-    handleUserNameChanged = userName => {[m
+[31m-        this.setState({[m
+[31m-            username: userName[m
+[31m-        });[m
+[31m-    };[m
+[31m-[m
+     handleResumeUnmount = () => {[m
+         const { chapterIndex, appreciations } = this.state;[m
+         const endInterview = Object.keys(data.chapters).length === chapterIndex;[m
+[36m@@ -96,45 +74,10 @@[m [mclass App extends React.Component {[m
+                     sectionIndex={sectionIndex}[m
+                     chapterIndex={chapterIndex}[m
+                     SectionUnmount={this.handleSectionUnmount}[m
+[31m-                    username={this.state.username}[m
+                 />[m
+             </div>[m
+         );[m
+     }[m
+[31m-    gotData = donnes => {[m
+[31m-        const { sectionIndex, chapterIndex, note } = this.state;[m
+[31m-        console.log('Chapitre index courant : ' + chapterIndex);[m
+[31m-        if (this.state.username && data.chapters['chapter' + chapterIndex].sections.length === sectionIndex) {[m
+[31m-            console.log(donnes.val());[m
+[31m-            obj_chapter = donnes.val();[m
+[31m-            let numNote = new Array();[m
+[31m-            for (let i = 1; i <= data.chapters['chapter' + chapterIndex].sections.length; i++) {[m
+[31m-                numNote.push(obj_chapter['section' + i]);[m
+[31m-                console.log(numNote);[m
+[31m-            }[m
+[31m-[m
+[31m-            let moy = numNote.reduce(function(acc, val) {[m
+[31m-                return acc + parseInt(val);[m
+[31m-            }, 0);[m
+[31m-            if (numNote.length === 0) {[m
+[31m-                moy = 0;[m
+[31m-            } else {[m
+[31m-                moy = moy / numNote.length;[m
+[31m-            }[m
+[31m-[m
+[31m-            if (chapterIndex < Object.keys(data.chapters).length + 1) {[m
+[31m-                if (data.chapters['chapter' + chapterIndex].sections.length === sectionIndex) {[m
+[31m-                    if (!isNaN(moy)) note.push(moy);[m
+[31m-                }[m
+[31m-            }[m
+[31m-            console.log(obj_chapter);[m
+[31m-            console.log(note);[m
+[31m-        }[m
+[31m-    };[m
+[31m-[m
+[31m-    errData = err => {[m
+[31m-        console.log(err);[m
+[31m-    };[m
+     render() {[m
+         const {[m
+             renderForm,[m
+[1mdiff --git a/react_project/src/Chapter.js b/react_project/src/Chapter.js[m
+[1mindex 68a0305..4e329e0 100644[m
+[1m--- a/react_project/src/Chapter.js[m
+[1m+++ b/react_project/src/Chapter.js[m
+[36m@@ -1,10 +1,6 @@[m
+ import React from 'react';[m
+ [m
+ class Chapter extends React.Component {[m
+[31m-    constructor(props) {[m
+[31m-        super(props);[m
+[31m-        this.state = { chapnum: props.chapnum, sections: props.sections };[m
+[31m-    }[m
+     dismiss() {[m
+         const { unmountChapter } = this.props;[m
+         unmountChapter();[m
+[36m@@ -13,13 +9,6 @@[m [mclass Chapter extends React.Component {[m
+         this.dismiss();[m
+     };[m
+ [m
+[31m-    DisplayList() {[m
+[31m-        let arr = new Array();[m
+[31m-        const { chapnum, data } = this.props;[m
+[31m-        let section = data.chapters['chapter' + chapnum].sections;[m
+[31m-        for (let val of section) {[m
+[31m-            arr.push(data.sections[val].title);[m
+[31m-        }[m
+     DisplayList() {[m
+         const { chapnum, data } = this.props;[m
+         const section = data.chapters['chapter' + chapnum].sections;[m
+[36m@@ -37,7 +26,6 @@[m [mclass Chapter extends React.Component {[m
+ [m
+     render() {[m
+         const { chapnum, data } = this.props;[m
+[31m-        const { username } = this.props;[m
+         return ([m
+             <div>[m
+                 <h3>{localStorage.getItem('UserName')}</h3>[m
+[36m@@ -45,7 +33,6 @@[m [mclass Chapter extends React.Component {[m
+                     Chapitre {chapnum} : {data.chapters['chapter' + chapnum].title}[m
+                 </h1>[m
+                 <div>{this.DisplayList()}</div>[m
+[31m-                <p> User : {username}</p>[m
+                 <button onClick={this.handleClick}>Démarrez</button>[m
+             </div>[m
+         );[m
+[1mdiff --git a/react_project/src/NameForm.js b/react_project/src/NameForm.js[m
+[1mindex fb3d58d..eeec9f8 100644[m
+[1m--- a/react_project/src/NameForm.js[m
+[1m+++ b/react_project/src/NameForm.js[m
+[36m@@ -1,8 +1,5 @@[m
+[31m-import React, { createContext, Component } from 'react'; // on importe createContext qui servira à la création d'un ou plusieurs contextes[m
+[32m+[m[32mimport React from 'react';[m
+ [m
+[31m-export const UserContext = createContext({[m
+[31m-    username: ''[m
+[31m-});[m
+ class NameForm extends React.Component {[m
+     state = { username: '' };[m
+ [m
+[36m@@ -17,8 +14,6 @@[m [mclass NameForm extends React.Component {[m
+ [m
+     handleSubmit = event => {[m
+         const { username } = this.state;[m
+[31m-        const { setUsername } = this.props;[m
+[31m-        setUsername(username);[m
+         event.preventDefault();[m
+         localStorage.setItem('UserName', username);[m
+         this.dismiss();[m
+[36m@@ -27,25 +22,22 @@[m [mclass NameForm extends React.Component {[m
+     render() {[m
+         const { username } = this.state;[m
+         return ([m
+[31m-            <UserContext.Provider value={this.state}>[m
+[31m-                {this.props.children}[m
+[31m-                <div>[m
+[31m-                    <form onSubmit={this.handleSubmit}>[m
+[31m-                        <label>[m
+[31m-                            User :[m
+[31m-                            <input[m
+[31m-                                type="text"[m
+[31m-                                color={'yellow'}[m
+[31m-                                value={username}[m
+[31m-                                onChange={this.handleChange}[m
+[31m-                                placeholder="Enter a username"[m
+[31m-                            />[m
+[31m-                        </label>[m
+[31m-                        <br />[m
+[31m-                        <input type="submit" value="Valider" align="center" />[m
+[31m-                    </form>[m
+[31m-                </div>[m
+[31m-            </UserContext.Provider>[m
+[32m+[m[32m            <div>[m
+[32m+[m[32m                <form onSubmit={this.handleSubmit}>[m
+[32m+[m[32m                    <label>[m
+[32m+[m[32m                        User :[m
+[32m+[m[32m                        <input[m
+[32m+[m[32m                            type="text"[m
+[32m+[m[32m                            color={'yellow'}[m
+[32m+[m[32m                            value={username}[m
+[32m+[m[32m                            onChange={this.handleChange}[m
+[32m+[m[32m                            placeholder="Enter a username"[m
+[32m+[m[32m                        />[m
+[32m+[m[32m                    </label>[m
+[32m+[m[32m                    <br />[m
+[32m+[m[32m                    <input type="submit" value="Valider" align="center" />[m
+[32m+[m[32m                </form>[m
+[32m+[m[32m            </div>[m
+         );[m
+     }[m
+ }[m
+[1mdiff --git a/react_project/src/Resume.js b/react_project/src/Resume.js[m
+[1mindex 27caa1d..37f5d7c 100644[m
+[1m--- a/react_project/src/Resume.js[m
+[1m+++ b/react_project/src/Resume.js[m
+[36m@@ -1,5 +1,4 @@[m
+ import React from 'react';[m
+[31m-import * as firebase from 'firebase';[m
+ [m
+ class Resume extends React.Component {[m
+     state = { appreciation: '' };[m
+[36m@@ -13,15 +12,8 @@[m [mclass Resume extends React.Component {[m
+     };[m
+ [m
+     handleSubmit = event => {[m
+[31m-        const { chapnum, username, moyenne } = this.props;[m
+[32m+[m[32m        const { chapnum } = this.props;[m
+         const { appreciation } = this.state;[m
+[31m-        const obj = {};[m
+[31m-        const str = 'chapter' + chapnum.toString();[m
+[31m-        obj[str] = moyenne;[m
+[31m-        firebase[m
+[31m-            .database()[m
+[31m-            .ref('student/' + username)[m
+[31m-            .update(obj);[m
+         const appreciationId = 'Appreciation' + chapnum;[m
+         localStorage.setItem(appreciationId, appreciation);[m
+         event.preventDefault();[m
+[1mdiff --git a/react_project/src/Section.js b/react_project/src/Section.js[m
+[1mindex 194a6bd..118da20 100644[m
+[1m--- a/react_project/src/Section.js[m
+[1m+++ b/react_project/src/Section.js[m
+[36m@@ -1,7 +1,6 @@[m
+ import React from 'react';[m
+ import './Section.css';[m
+ import { GradeDisplay } from './GradeDisplay';[m
+[31m-import * as firebase from 'firebase';[m
+ [m
+ class Section extends React.Component {[m
+     DisplayTitle() {[m
+[36m@@ -48,7 +47,6 @@[m [mclass Section extends React.Component {[m
+     }[m
+ [m
+ [m
+[31m-[m
+     dismiss() {[m
+         const { SectionUnmount } = this.props;[m
+         SectionUnmount();[m
+[36m@@ -59,19 +57,11 @@[m [mclass Section extends React.Component {[m
+     };[m
+ [m
+     handleChange = e => {[m
+[31m-        const { username, sectionIndex, chapnum } = this.props;[m
+[31m-        console.log(username);[m
+[32m+[m[32m        const { sectionIndex } = this.props;[m
+         const sectionId = 'section' + (sectionIndex + 1);[m
+         const grade = e.target.value;[m
+[31m-        const obj = {};[m
+[31m-[m
+[31m-        obj[sectionId.toString()] = grade;[m
+[31m-        firebase[m
+[31m-            .database()[m
+[31m-            .ref('student/' + username + '/chapter' + chapnum.toString())[m
+[31m-            .update(obj);[m
+[31m-        const { SectionUnmount } = this.props;[m
+[31m-        SectionUnmount();[m
+[32m+[m[32m        localStorage.setItem(sectionId, grade);[m
+[32m+[m[32m        this.nextSection();[m
+     };[m
+ [m
+     render() {[m

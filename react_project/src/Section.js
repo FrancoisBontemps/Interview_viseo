@@ -1,22 +1,23 @@
 import React from 'react';
 import './Section.css';
 import { GradeDisplay } from './GradeDisplay';
-import * as firebase from 'firebase';
 import { userName } from './NameForm';
+import { firebase, data } from './config';
 
 class Section extends React.Component {
     DisplayTitle() {
-        const { chapterIndex, sectionIndex, data } = this.props;
+        const { chapterIndex, sectionIndex } = this.props;
         const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
 
         return <h1>{data.sections[sect].title}</h1>;
     }
-    DisplayNotions() {
+    DisplayText() {
         const { chapterIndex, sectionIndex, data } = this.props;
         const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
-
-        if (data.sections[sect].notions !== undefined) {
-            return (
+        const section = data.sections[sect];
+        const text = {};
+        if (section.notions !== undefined) {
+            text.notion = (
                 <div>
                     {data.sections[sect].notions.map((value, index) => (
                         <h4 key={index}>
@@ -26,14 +27,9 @@ class Section extends React.Component {
                     ))}
                 </div>
             );
-        } else return;
-    }
-    DisplayQuestions() {
-        const { chapterIndex, sectionIndex, data } = this.props;
-        const sect = data.chapters['chapter' + chapterIndex].sections[sectionIndex];
-
-        if (data.sections[sect].questions !== undefined) {
-            return (
+        }
+        if (section.questions !== undefined) {
+            text.question = (
                 <div>
                     {data.sections[sect].questions.map((value, index) => (
                         <h4 key={index}>
@@ -43,7 +39,13 @@ class Section extends React.Component {
                     ))}
                 </div>
             );
-        } else return;
+        }
+        return (
+            <div>
+                {text.notion}
+                {text.question}
+            </div>
+        );
     }
 
     handleChange = e => {
@@ -51,8 +53,6 @@ class Section extends React.Component {
         const sectionId = 'section' + (sectionIndex + 1);
         const grade = e.target.value;
         const noteObj = { [sectionId.toString()]: grade };
-
-        localStorage.setItem(sectionId, grade);
 
         firebase
             .database()
@@ -68,8 +68,7 @@ class Section extends React.Component {
             <div>
                 <h3>{userName.name}</h3>
                 <div>{this.DisplayTitle()}</div>
-                <div>{this.DisplayNotions()}</div>
-                <div>{this.DisplayQuestions()}</div>
+                <div>{this.DisplayText()}</div>
                 <GradeDisplay handleChange={this.handleChange} />
             </div>
         );

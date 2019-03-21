@@ -36,7 +36,6 @@ class ResumeAllChapter extends React.Component {
         let temp = 0;
 
         for (let chapindex in results) {
-            console.log(results[chapindex]);
             firebase
                 .database()
                 .ref('student/' + userName.name + '/' + 'chapter/' + chapindex)
@@ -54,7 +53,6 @@ class ResumeAllChapter extends React.Component {
                     }
                 );
         }
-        console.log(tabNote);
         for (let i = 1; i < tabNote.length; i++) {
             if (isNaN(tabNote[i])) {
                 tabMoy.push(temp);
@@ -64,7 +62,6 @@ class ResumeAllChapter extends React.Component {
             }
         }
         tabMoy.push(temp);
-        console.log(tabMoy);
         return tabMoy;
     };
     getTabAppr = () => {
@@ -72,7 +69,6 @@ class ResumeAllChapter extends React.Component {
         let tabappr = [];
 
         for (let chapindex in results) {
-            console.log(results[chapindex]);
             firebase
                 .database()
                 .ref('student/' + userName.name + '/' + 'chapter/' + chapindex)
@@ -80,7 +76,6 @@ class ResumeAllChapter extends React.Component {
                     'value',
                     snapshot => {
                         if (snapshot.val() != null) {
-                            console.log(Object.values(snapshot.val())[0]);
                             tabappr.push(Object.values(snapshot.val())[0]);
                         }
                     },
@@ -92,11 +87,8 @@ class ResumeAllChapter extends React.Component {
         return tabappr;
     };
     render() {
-        const { results } = this.state;
-        console.log(results);
         const Moy = this.getTabMoy();
         const Appr = this.getTabAppr();
-        console.log(Moy);
         return (
             <form className="Form" onSubmit={this.handleSubmit}>
                 <div>
@@ -111,6 +103,7 @@ class ResumeAllChapter extends React.Component {
                         ))}
                     </div>
                 </div>
+                <button onClick={this.handleClick}>Nouvelle Interview</button>
             </form>
         );
     }

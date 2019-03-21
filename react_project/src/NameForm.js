@@ -13,7 +13,6 @@ class NameForm extends React.Component {
     handleSubmit = () => {
         const { username } = this.state;
         const { FormUnmount } = this.props;
-        localStorage.setItem('UserName', username);
         userName.name = username;
         firebase
             .database()
@@ -28,22 +27,22 @@ class NameForm extends React.Component {
     render() {
         const { username } = this.state;
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        User :
-                        <input
-                            type="text"
-                            color={'yellow'}
-                            value={username}
-                            onChange={this.handleChange}
-                            placeholder="Enter a username"
-                        />
-                    </label>
-                    <br />
-                    <input type="submit" value="Valider" align="center" />
-                </form>
-            </div>
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            User :
+                            <input
+                                type="text"
+                                color={'yellow'}
+                                value={username}
+                                onChange={this.handleChange}
+                                placeholder="Enter a username"
+                            />
+                        </label>
+                        <br />
+                        <input type="submit" value="Valider" align="center" />
+                    </form>
+                </div>
         );
     }
 }

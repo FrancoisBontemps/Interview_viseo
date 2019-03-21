@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
 import logo from './Images/Viseo.png';
 import './App.css';
 import NameForm from './NameForm.js';
@@ -10,20 +9,22 @@ import ResumeAllChapter from './ResumeAllChap';
 import { userName } from './NameForm';
 import { firebase, data } from './config';
 
+const initialState = {
+    renderForm: true,
+    renderChapter: false,
+    renderSection: false,
+    renderNextSection: false,
+    renderResume: false,
+    renderResumeAllChapter: false,
+    chapterIndex: 1,
+    sectionIndex: 0,
+    note: [],
+    appreciations: []
+};
+
 class App extends React.Component {
-    state = {
-        renderForm: true,
-        renderChapter: false,
-        renderSection: false,
-        renderNextSection: false,
-        renderResume: false,
-        renderResumeAllChapter: false,
-        chapterIndex: 1,
-        sectionIndex: 0,
-        sectionNote: [],
-        chapterNote: [],
-        appreciations: []
-    };
+    state = initialState;
+
     handleFormUnmount = () => {
         this.setState({ renderForm: false, renderChapter: true, renderResume: false });
     };
@@ -32,54 +33,36 @@ class App extends React.Component {
     };
     handleSectionUnmount = () => {
         const { sectionIndex, chapterIndex, renderSection, renderNextSection } = this.state;
+        const endChapter = data.chapters['chapter' + chapterIndex].sections.length === sectionIndex + 1;
         this.setState({
             sectionIndex: sectionIndex + 1,
+            renderResume: endChapter ? true : false,
             renderSection: !renderSection,
             renderNextSection: !renderNextSection
         });
-        if (data.chapters['chapter' + chapterIndex].sections.length === sectionIndex + 1) {
-            this.setState({
-                renderResume: true
-            });
-        }
     };
 
     handleResumeUnmount = () => {
         const { chapterIndex, appreciations } = this.state;
+        const endInterview = Object.keys(data.chapters).length === chapterIndex;
         this.setState({
             renderChild: false,
-            renderChapter: true,
+            renderChapter: endInterview ? false : true,
             renderSection: false,
             renderNextSection: false,
             renderResume: false,
             sectionIndex: 0,
-            chapterIndex: chapterIndex + 1
+            renderResumeAllChapter: endInterview ? true : false,
+            chapterIndex: endInterview ? 1 : chapterIndex + 1
         });
+    };
 
-        appreciations.push(
-            firebase
-                .database()
-                .ref('student/' + userName.name)
-                .child('chapter/' + chapterIndex)
-                .child('Appreciation' + chapterIndex)
-                .on(
-                    'value',
-                    function(snapshot) {
-                        console.log(snapshot.val());
-                    },
-                    function(errorObject) {
-                        console.log('The read failed: ' + errorObject.code);
-                    }
-                )
-        );
-
-        if (Object.keys(data.chapters).length === chapterIndex) {
-            this.setState({
-                renderResumeAllChapter: true,
-                renderChapter: false,
-                chapterIndex: 1
-            });
-        }
+    handleResumeAllChapterUnmount = () => {
+        this.setState(initialState);
+        this.setState({
+            note: [],
+            appreciation: []
+        });
     };
     createSection(data) {
         const { sectionIndex, chapterIndex } = this.state;
@@ -94,7 +77,6 @@ class App extends React.Component {
             </div>
         );
     }
-
     render() {
         const {
             renderForm,
@@ -117,7 +99,7 @@ class App extends React.Component {
                     <div className="Form">{renderForm ? <NameForm FormUnmount={this.handleFormUnmount} /> : null}</div>
                     <div className="Chapter">
                         {renderChapter && chapterIndex < Object.keys(data.chapters).length + 1 ? (
-                            <Chapter chapnum={chapterIndex} data={data} unmountChapter={this.handleChapterUnmount} />
+                            <Chapter chapnum={chapterIndex} unmountChapter={this.handleChapterUnmount} />
                         ) : null}
                     </div>
                     <div className="Section">
@@ -141,7 +123,11 @@ class App extends React.Component {
                     </div>
                     <div className="ResumeAllChapter">
                         {renderResumeAllChapter ? (
-                            <ResumeAllChapter />
+                            <ResumeAllChapter
+                                tabNote={note}
+                                tabAppreciation={appreciations}
+                                ResumeAllChapterUnmount={this.handleResumeAllChapterUnmount}
+                            />
                         ) : null}
                     </div>
                 </header>

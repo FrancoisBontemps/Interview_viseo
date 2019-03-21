@@ -13,7 +13,6 @@ class Resume extends React.Component {
         const { chapnum, ResumeUnmount } = this.props;
         const { appreciation } = this.state;
         const appreciationId = 'Appreciation' + chapnum;
-
         localStorage.setItem(appreciationId, appreciation);
 
         let appreciationObj = { [appreciationId.toString()]: appreciation };
