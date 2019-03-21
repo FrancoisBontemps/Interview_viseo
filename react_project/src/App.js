@@ -7,7 +7,7 @@ import Section from './Section';
 import Resume from './Resume';
 import ResumeAllChapter from './ResumeAllChap';
 import { userName } from './NameForm';
-import { firebase, data } from './config';
+import { data } from './config';
 
 const initialState = {
     renderForm: true,

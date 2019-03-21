@@ -89,6 +89,11 @@ class ResumeAllChapter extends React.Component {
     render() {
         const Moy = this.getTabMoy();
         const Appr = this.getTabAppr();
+        const LongueurSections = [];
+        for (let nbSection in data.chapters) {
+            LongueurSections.push(data.chapters[nbSection].sections.length);
+        }
+        console.log(LongueurSections);
         return (
             <form className="Form" onSubmit={this.handleSubmit}>
                 <div>
@@ -96,7 +101,7 @@ class ResumeAllChapter extends React.Component {
                     <div>
                         {Appr.map((value, index) => (
                             <h4 key={index}>
-                                chapitre {index + 1} : Moyenne {Moy[index]}
+                                chapitre {index + 1} : Moyenne {Moy[index] / LongueurSections[index]}
                                 <br />
                                 Appréciation : {value}
                             </h4>
