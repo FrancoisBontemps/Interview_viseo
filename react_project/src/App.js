@@ -38,7 +38,7 @@ class App extends React.Component {
         const endChapter = data.chapters['chapter' + chapterIndex].sections.length === sectionIndex + 1;
         this.setState({
             sectionIndex: sectionIndex + 1,
-            renderResume : endChapter ? true : false,
+            renderResume: endChapter ? true : false,
             renderSection: !renderSection,
             renderNextSection: !renderNextSection
         });
@@ -60,7 +60,7 @@ class App extends React.Component {
             renderNextSection: false,
             renderResume: false,
             sectionIndex: 0,
-            renderResumeAllChapter: endInterview? true : false,
+            renderResumeAllChapter: endInterview ? true : false,
             chapterIndex: endInterview ? 1 : chapterIndex + 1
         });
         appreciations.push(localStorage.getItem('Appreciation' + chapterIndex));
@@ -69,11 +69,10 @@ class App extends React.Component {
     handleResumeAllChapterUnmount = () => {
         this.setState(initialState);
         this.setState({
-                note: [],
-                appreciation: []
-            }
-        );
-    }
+            note: [],
+            appreciation: []
+        });
+    };
     createSection(data) {
         const { sectionIndex, chapterIndex, userName } = this.state;
         return (
@@ -103,7 +102,6 @@ class App extends React.Component {
             appreciations,
             userName
         } = this.state;
-
 
         return (
             <div className="App">
