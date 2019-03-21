@@ -1,6 +1,7 @@
 import React from 'react';
 import './Section.css';
 import { GradeDisplay } from './GradeDisplay';
+import * as firebase from 'firebase';
 
 class Section extends React.Component {
     DisplayTitle() {
@@ -58,11 +59,19 @@ class Section extends React.Component {
     };
 
     handleChange = e => {
-        const { sectionIndex } = this.props;
+        const { username, sectionIndex, chapnum } = this.props;
+        console.log(username);
         const sectionId = 'section' + (sectionIndex + 1);
         const grade = e.target.value;
-        localStorage.setItem(sectionId, grade);
-        this.nextSection();
+        const obj = {};
+
+        obj[sectionId.toString()] = grade;
+        firebase
+            .database()
+            .ref('student/' + username + '/chapter' + chapnum.toString())
+            .update(obj);
+        const { SectionUnmount } = this.props;
+        SectionUnmount();
     };
 
     render() {

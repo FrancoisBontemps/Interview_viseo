@@ -19,10 +19,25 @@ const initialState = {
     chapterIndex: 1,
     sectionIndex: 0,
     note: [],
-    appreciations: []
+    appreciations: [],
+    username: ''
 };
+var firebase = require('firebase');
+var config = {
+    apiKey: 'AIzaSyDmRPV5SUPIW_oFQj9xweTMHAXLbPA4imU',
+    authDomain: 'viseo-36d12.firebaseapp.com',
+    databaseURL: 'https://viseo-36d12.firebaseio.com',
+    projectId: 'viseo-36d12',
+    storageBucket: 'viseo-36d12.appspot.com',
+    messagingSenderId: '131746919965'
+};
+firebase.initializeApp(config);
+
+let obj_chapter = {};
+
 class App extends React.Component {
     state = initialState;
+
     handleFormUnmount = () => {
         this.setState({ renderForm: false, renderChapter: true, renderResume: false });
     };
@@ -37,6 +52,12 @@ class App extends React.Component {
             renderResume : endChapter ? true : false,
             renderSection: !renderSection,
             renderNextSection: !renderNextSection
+        });
+    };
+
+    handleUserNameChanged = userName => {
+        this.setState({
+            username: userName
         });
     };
 
@@ -75,10 +96,45 @@ class App extends React.Component {
                     sectionIndex={sectionIndex}
                     chapterIndex={chapterIndex}
                     SectionUnmount={this.handleSectionUnmount}
+                    username={this.state.username}
                 />
             </div>
         );
     }
+    gotData = donnes => {
+        const { sectionIndex, chapterIndex, note } = this.state;
+        console.log('Chapitre index courant : ' + chapterIndex);
+        if (this.state.username && data.chapters['chapter' + chapterIndex].sections.length === sectionIndex) {
+            console.log(donnes.val());
+            obj_chapter = donnes.val();
+            let numNote = new Array();
+            for (let i = 1; i <= data.chapters['chapter' + chapterIndex].sections.length; i++) {
+                numNote.push(obj_chapter['section' + i]);
+                console.log(numNote);
+            }
+
+            let moy = numNote.reduce(function(acc, val) {
+                return acc + parseInt(val);
+            }, 0);
+            if (numNote.length === 0) {
+                moy = 0;
+            } else {
+                moy = moy / numNote.length;
+            }
+
+            if (chapterIndex < Object.keys(data.chapters).length + 1) {
+                if (data.chapters['chapter' + chapterIndex].sections.length === sectionIndex) {
+                    if (!isNaN(moy)) note.push(moy);
+                }
+            }
+            console.log(obj_chapter);
+            console.log(note);
+        }
+    };
+
+    errData = err => {
+        console.log(err);
+    };
     render() {
         const {
             renderForm,

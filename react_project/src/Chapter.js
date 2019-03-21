@@ -37,6 +37,7 @@ class Chapter extends React.Component {
 
     render() {
         const { chapnum, data } = this.props;
+        const { username } = this.props;
         return (
             <div>
                 <h3>{localStorage.getItem('UserName')}</h3>
@@ -44,6 +45,7 @@ class Chapter extends React.Component {
                     Chapitre {chapnum} : {data.chapters['chapter' + chapnum].title}
                 </h1>
                 <div>{this.DisplayList()}</div>
+                <p> User : {username}</p>
                 <button onClick={this.handleClick}>Démarrez</button>
             </div>
         );
