@@ -1,12 +1,9 @@
 import React from 'react';
 
 class Chapter extends React.Component {
-    dismiss() {
+    handleClick = () => {
         const { unmountChapter } = this.props;
         unmountChapter();
-    }
-    handleClick = () => {
-        this.dismiss();
     };
 
     DisplayList() {
@@ -29,6 +26,7 @@ class Chapter extends React.Component {
 
     render() {
         const { chapnum, data } = this.props;
+
         return (
             <div>
                 <h3>{localStorage.getItem('UserName')}</h3>

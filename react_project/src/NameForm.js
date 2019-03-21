@@ -14,7 +14,6 @@ class NameForm extends React.Component {
         const { username } = this.state;
         localStorage.setItem('UserName', username);
         userName.name = username;
-        console.log(userName.name);
         firebase
             .database()
             .ref('student/' + username)

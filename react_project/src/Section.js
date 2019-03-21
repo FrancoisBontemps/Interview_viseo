@@ -47,7 +47,7 @@ class Section extends React.Component {
     }
 
     handleChange = e => {
-        const { sectionIndex } = this.props;
+        const { sectionIndex, chapterIndex } = this.props;
         const sectionId = 'section' + (sectionIndex + 1);
         const grade = e.target.value;
         const obj = {};
@@ -58,6 +58,7 @@ class Section extends React.Component {
         firebase
             .database()
             .ref('student/' + userName.name)
+            .child('chapter/' + chapterIndex)
             .update(obj);
 
         const { SectionUnmount } = this.props;
@@ -67,7 +68,7 @@ class Section extends React.Component {
     render() {
         return (
             <div>
-                <h3>{localStorage.getItem('UserName')}</h3>
+                <h3>{userName.name}</h3>
                 <div>{this.DisplayTitle()}</div>
                 <div>{this.DisplayNotions()}</div>
                 <div>{this.DisplayQuestions()}</div>

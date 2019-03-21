@@ -6,12 +6,14 @@ class ResumeAllChapter extends React.Component {
         return (
             <div>
                 <div>
+                    {' '}
                     {tabNote.map((value, index) => (
                         <h4 key={index}>
                             Chapitre {index + 1} : Moyenne {value} <br />
                             Note : {tabAppreciation[index]}
                         </h4>
                     ))}
+
                 </div>
             </div>
         );

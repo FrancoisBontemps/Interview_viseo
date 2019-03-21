@@ -7,6 +7,7 @@ import Chapter from './Chapter';
 import Section from './Section';
 import Resume from './Resume';
 import ResumeAllChapter from './ResumeAllChap';
+import { userName } from './NameForm';
 
 const data = require('./Interview');
 var firebase = require('firebase');
@@ -40,7 +41,8 @@ class App extends React.Component {
         renderResumeAllChapter: false,
         chapterIndex: 1,
         sectionIndex: 0,
-        note: [],
+        sectionNote: [],
+        chapterNote: [],
         appreciations: []
     };
     handleFormUnmount = () => {
@@ -75,7 +77,22 @@ class App extends React.Component {
             chapterIndex: chapterIndex + 1
         });
 
-        appreciations.push(localStorage.getItem('Appreciation' + chapterIndex));
+        appreciations.push(
+            firebase
+                .database()
+                .ref('student/' + userName.name)
+                .child('chapter/' + chapterIndex)
+                .child('Appreciation' + chapterIndex)
+                .on(
+                    'value',
+                    function(snapshot) {
+                        console.log(snapshot.val());
+                    },
+                    function(errorObject) {
+                        console.log('The read failed: ' + errorObject.code);
+                    }
+                )
+        );
 
         if (Object.keys(data.chapters).length === chapterIndex) {
             this.setState({
@@ -98,6 +115,7 @@ class App extends React.Component {
             </div>
         );
     }
+
     render() {
         const {
             renderForm,
@@ -111,25 +129,7 @@ class App extends React.Component {
             note,
             appreciations
         } = this.state;
-        let numNote = new Array();
-        for (let i = 1; i <= data.chapters['chapter' + chapterIndex].sections.length; i++) {
-            numNote.push(localStorage.getItem('section' + i));
-        }
 
-        let moy = numNote.reduce(function(acc, val) {
-            return acc + parseInt(val);
-        }, 0);
-        if (numNote.length === 0) {
-            moy = 0;
-        } else {
-            moy = moy / numNote.length;
-        }
-
-        if (chapterIndex < Object.keys(data.chapters).length + 1) {
-            if (data.chapters['chapter' + chapterIndex].sections.length === sectionIndex) {
-                note.push(moy);
-            }
-        }
         return (
             <div className="App">
                 <header className="NameForm">
@@ -156,7 +156,7 @@ class App extends React.Component {
                             <Resume
                                 chapnum={chapterIndex}
                                 ResumeUnmount={this.handleResumeUnmount}
-                                moyenne={note[chapterIndex - 1]}
+                                name={userName.name}
                             />
                         ) : null}
                     </div>
