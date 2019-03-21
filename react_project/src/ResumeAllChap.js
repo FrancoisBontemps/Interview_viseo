@@ -1,8 +1,16 @@
 import React from 'react';
 
 class ResumeAllChapter extends React.Component {
+    dismiss() {
+        const { ResumeAllChapterUnmount } = this.props;
+        ResumeAllChapterUnmount();
+    }
+    handleClick = () => {
+        this.dismiss();
+    };
     display() {
         const { tabNote, tabAppreciation } = this.props;
+        console.log(tabAppreciation);
         return (
             <div>
                 <div>
@@ -25,6 +33,7 @@ class ResumeAllChapter extends React.Component {
 
                     <div>{this.display()}</div>
                 </div>
+                <button onClick={this.handleClick}>Nouvelle Interview</button>
             </form>
         );
     }

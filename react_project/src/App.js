@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
 import logo from './Images/Viseo.png';
 import './App.css';
 import NameForm from './NameForm.js';
@@ -56,7 +55,7 @@ class App extends React.Component {
         });
 
         appreciations.push(localStorage.getItem('Appreciation' + chapterIndex));
-
+        console.log(appreciations);
         if (Object.keys(data.chapters).length === chapterIndex) {
             this.setState({
                 renderResumeAllChapter: true,
@@ -65,6 +64,22 @@ class App extends React.Component {
             });
         }
     };
+
+    handleResumeAllChapterUnmount = () => {
+        this.setState({
+            renderForm: true,
+            renderChapter: false,
+            renderSection: false,
+            renderNextSection: false,
+            renderResume: false,
+            renderResumeAllChapter: false,
+            chapterIndex: 1,
+            sectionIndex: 0,
+            note: [],
+            appreciations: []
+        });
+    };
+
     createSection(data) {
         const { sectionIndex, chapterIndex } = this.state;
         return (
@@ -141,7 +156,11 @@ class App extends React.Component {
                     </div>
                     <div className="ResumeAllChapter">
                         {renderResumeAllChapter ? (
-                            <ResumeAllChapter tabNote={note} tabAppreciation={appreciations} />
+                            <ResumeAllChapter
+                                tabNote={note}
+                                tabAppreciation={appreciations}
+                                ResumeAllChapterUnmount={this.handleResumeAllChapterUnmount}
+                            />
                         ) : null}
                     </div>
                 </header>
