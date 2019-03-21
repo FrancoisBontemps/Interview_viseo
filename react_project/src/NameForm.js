@@ -1,8 +1,4 @@
 import React from 'react';
-
-export const UserContext = createContext({
-    username: ''
-});
 class NameForm extends React.Component {
     state = { username: '' };
 
@@ -27,24 +23,22 @@ class NameForm extends React.Component {
     render() {
         const { username } = this.state;
         return (
-
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>
-                            User :
-                            <input
-                                type="text"
-                                color={'yellow'}
-                                value={username}
-                                onChange={this.handleChange}
-                                placeholder="Enter a username"
-                            />
-                        </label>
-                        <br />
-                        <input type="submit" value="Valider" align="center" />
-                    </form>
-                </div>
-            </UserContext.Provider>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        User :
+                        <input
+                            type="text"
+                            color={'yellow'}
+                            value={username}
+                            onChange={this.handleChange}
+                            placeholder="Enter a username"
+                        />
+                    </label>
+                    <br />
+                    <input type="submit" value="Valider" align="center" />
+                </form>
+            </div>
         );
     }
 }

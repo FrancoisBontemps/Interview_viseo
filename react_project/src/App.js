@@ -12,8 +12,6 @@ firebase.initializeApp(config);
 
 const data = require('./Interview');
 
-let objChapter = {};
-
 class App extends React.Component {
     state = {
         renderForm: true,
@@ -46,9 +44,9 @@ class App extends React.Component {
         });
     };
 
-    handleUserNameChanged = username => {
+    handleUserNameChanged = userName => {
         this.setState({
-            userName: username
+            userName
         });
     };
 
@@ -106,7 +104,7 @@ class App extends React.Component {
             appreciations,
             userName
         } = this.state;
-        return (
+     return (
             <div className="App">
                 <p> {note[chapterIndex - 1]}</p>
                 <header className="NameForm">

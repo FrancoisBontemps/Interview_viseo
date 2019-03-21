@@ -7,3 +7,10 @@ export const config = {
     storageBucket: 'viseo-36d12.appspot.com',
     messagingSenderId: '131746919965'
 };
+
+export const updateFirebase = (username, chapnum, obj) => {
+    firebase
+        .database()
+        .ref('student/' + username + '/chapter' + chapnum.toString())
+        .update(obj);
+};
